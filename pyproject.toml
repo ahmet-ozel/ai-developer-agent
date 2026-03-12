@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-developer-agent"
+version = "0.1.0"
+description = "MCP-based AI Developer Agent that generates code changes from Jira tasks"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2.0",
+    "pydantic-settings",
+    "mcp-agent",
+    "mcp-atlassian",
+    "openai",
+    "anthropic",
+    "python-dotenv",
+    "httpx",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "hypothesis",
+    "httpx",
+    "python-dotenv",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "e2e: end-to-end tests requiring real service credentials",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

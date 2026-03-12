@@ -1,0 +1,20 @@
+# mcp-agent configuration — auto-generated
+# MCP servers are configured dynamically via MCPServerConfigBuilder,
+# but this file provides the base config for MCPApp.
+
+name: ai-developer-agent
+execution_engine: asyncio
+
+logger:
+  transports: [console]
+  level: info
+  progress_display: true
+
+openai:
+  default_model: gpt-4o-mini
+
+# MCP servers are injected programmatically from Settings.
+# See src/config/mcp_servers.py for the dynamic config builder.
+# The servers below are placeholders — actual values come from .env
+mcp:
+  servers: {}

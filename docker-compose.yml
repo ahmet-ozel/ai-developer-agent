@@ -1,0 +1,25 @@
+services:
+  agent:
+    build: .
+    container_name: ai-developer-agent
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount source for development (optional — remove for production)
+      - ./src:/app/src:ro
+      - ./mcp_agent.config.yaml:/app/mcp_agent.config.yaml:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Optional: run e2e tests inside Docker
+  test:
+    build: .
+    container_name: ai-developer-agent-test
+    env_file: .env
+    command: python -m pytest tests/e2e/ -v --tb=short
+    profiles: ["test"]
