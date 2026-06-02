@@ -1,5 +1,11 @@
 # AI Developer Agent
 
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-async-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose)
+[![MCP](https://img.shields.io/badge/MCP-Model_Context_Protocol-6E56CF)](https://modelcontextprotocol.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 An autonomous AI agent that reads Jira tasks, finds relevant code in your repository, generates changes with LLM, reviews them, and creates pull requests — all automatically.
 
 ## How It Works
@@ -40,7 +46,7 @@ The agent uses a two-tier LLM system:
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/your-username/ai-developer-agent.git
+git clone https://github.com/ahmet-ozel/ai-developer-agent.git
 cd ai-developer-agent
 pip install -e ".[dev]"
 ```
