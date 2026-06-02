@@ -1,4 +1,4 @@
-# AI Developer Agent
+﻿# AI Developer Agent
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-async-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
@@ -46,8 +46,8 @@ The agent uses a two-tier LLM system:
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/ahmet-ozel/ai-developer-agent.git
-cd ai-developer-agent
+git clone https://github.com/ahmet-ozel/jira-autonomous-coding-agent.git
+cd jira-autonomous-coding-agent
 pip install -e ".[dev]"
 ```
 
