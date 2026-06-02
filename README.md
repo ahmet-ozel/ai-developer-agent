@@ -6,7 +6,7 @@
 [![MCP](https://img.shields.io/badge/MCP-Model_Context_Protocol-6E56CF)](https://modelcontextprotocol.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An autonomous AI agent that reads Jira tasks, finds relevant code in your repository, generates changes with LLM, reviews them, and creates pull requests — all automatically.
+An autonomous AI agent that reads Jira tasks, finds relevant code in your repository, generates changes with LLM, reviews them, and creates pull requests - all automatically.
 
 ## How It Works
 
@@ -14,11 +14,11 @@ An autonomous AI agent that reads Jira tasks, finds relevant code in your reposi
 Jira Task → TaskReader → CodeFinder → CodeWriter → CodeReviewer → Pull Request
 ```
 
-1. **TaskReader** — Reads the Jira issue (summary, description, acceptance criteria, comments, linked issues) and estimates scope
-2. **CodeFinder** — Locates relevant source files in the repository using the git provider API
-3. **CodeWriter** — Generates code changes and tests using a strong LLM (GPT-4o, Claude, etc.)
-4. **CodeReviewer** — Reviews the generated code for quality, security, and correctness
-5. **PR Creation** — Creates a branch, commits changes, opens a pull request, and comments back on Jira
+1. **TaskReader** - Reads the Jira issue (summary, description, acceptance criteria, comments, linked issues) and estimates scope
+2. **CodeFinder** - Locates relevant source files in the repository using the git provider API
+3. **CodeWriter** - Generates code changes and tests using a strong LLM (GPT-4o, Claude, etc.)
+4. **CodeReviewer** - Reviews the generated code for quality, security, and correctness
+5. **PR Creation** - Creates a branch, commits changes, opens a pull request, and comments back on Jira
 
 ## Supported Platforms
 
@@ -38,8 +38,8 @@ Jira Task → TaskReader → CodeFinder → CodeWriter → CodeReviewer → Pull
 | **vLLM** | Any OpenAI-compatible model | Self-hosted, requires tool-calling support |
 
 The agent uses a two-tier LLM system:
-- **Fast tier** — For task reading, code finding (e.g., gpt-4o-mini)
-- **Strong tier** — For code writing, code review (e.g., gpt-4o)
+- **Fast tier** - For task reading, code finding (e.g., gpt-4o-mini)
+- **Strong tier** - For code writing, code review (e.g., gpt-4o)
 
 ## Quick Start
 
@@ -63,7 +63,7 @@ cp .env.example .env
 1. Create a dedicated Jira user (e.g., `ai-developer-bot`)
 2. Add a custom field named **"Repository"** (short text type) to your Jira project
 3. Set the field value to the repository name (e.g., `my-backend-api`) on each issue
-4. The agent discovers this field dynamically at runtime — no hardcoded field IDs
+4. The agent discovers this field dynamically at runtime - no hardcoded field IDs
 
 ### 4. Run with Docker (Recommended)
 
@@ -279,10 +279,10 @@ ai-developer-agent/
 ### Key Design Decisions
 
 - **GitHub uses MCP server**, GitLab and Bitbucket use direct REST API clients (the `@modelcontextprotocol/server-gitlab` MCP server has critical zod@4 compatibility issues)
-- **Two-tier LLM system** — fast models for reading/finding, strong models for writing/reviewing
-- **Dynamic Jira field discovery** — the "Repository" custom field ID is discovered at runtime, not hardcoded
-- **In-memory task lock** — prevents duplicate processing; requires single-worker deployment (`--workers 1`)
-- **Token budget management** — prevents LLM context overflow by tracking token usage
+- **Two-tier LLM system** - fast models for reading/finding, strong models for writing/reviewing
+- **Dynamic Jira field discovery** - the "Repository" custom field ID is discovered at runtime, not hardcoded
+- **In-memory task lock** - prevents duplicate processing; requires single-worker deployment (`--workers 1`)
+- **Token budget management** - prevents LLM context overflow by tracking token usage
 
 ## Utility Scripts
 
@@ -356,7 +356,7 @@ docker-compose run --rm test
 - Confirm the issue is assigned to the bot user
 
 **Single worker requirement**
-- `TaskLock` is in-memory — use `--workers 1` with uvicorn
+- `TaskLock` is in-memory - use `--workers 1` with uvicorn
 - For multi-replica deployments, implement a Redis-based distributed lock
 
 ## Docker
