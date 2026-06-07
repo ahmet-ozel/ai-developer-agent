@@ -1,10 +1,10 @@
 ﻿"""Unit tests for src/pipeline/retry.py - shared retry mechanism.
 
 Covers:
-- Retryable exception → retries up to max_retries
-- Non-retryable exception → raises immediately (1 attempt)
-- Successful call → returns result (1 attempt)
-- Max retries exhausted → raises last exception
+- Retryable exception  retries up to max_retries
+- Non-retryable exception  raises immediately (1 attempt)
+- Successful call  returns result (1 attempt)
+- Max retries exhausted  raises last exception
 - Rate limit message detection
 - _is_retryable classification for various exception types
 """
@@ -160,9 +160,9 @@ class TestRetryWithBackoff:
         assert mock_sleep.call_count == 3
         delays = [call.args[0] for call in mock_sleep.call_args_list]
         # base_delay * 2^attempt ± 25% jitter
-        # attempt 0: 1.0 ± 0.25 → [0.75, 1.25]
-        # attempt 1: 2.0 ± 0.50 → [1.50, 2.50]
-        # attempt 2: 4.0 ± 1.00 → [3.00, 5.00]
+        # attempt 0: 1.0 ± 0.25  [0.75, 1.25]
+        # attempt 1: 2.0 ± 0.50  [1.50, 2.50]
+        # attempt 2: 4.0 ± 1.00  [3.00, 5.00]
         assert 0.75 <= delays[0] <= 1.25
         assert 1.50 <= delays[1] <= 2.50
         assert 3.00 <= delays[2] <= 5.00
@@ -175,7 +175,7 @@ class TestRetryWithBackoff:
             await retry_with_backoff(
                 func, max_retries=3, base_delay=10.0, max_delay=5.0
             )
-        # All delays should be capped at max_delay (5.0) ± 25% jitter → [3.75, 6.25]
+        # All delays should be capped at max_delay (5.0) ± 25% jitter  [3.75, 6.25]
         for call in mock_sleep.call_args_list:
             assert 3.75 <= call.args[0] <= 6.25
 
@@ -216,7 +216,7 @@ class TestRetryProperties:
     def test_retryable_exception_retries_exactly_max_retries(
         self, exc_cls: type[Exception], max_retries: int
     ) -> None:
-        """Retryable exception → function is called exactly max_retries times.
+        """Retryable exception  function is called exactly max_retries times.
 
         **Validates: Requirements 2.5, 3.5, 11.1**
         """
@@ -244,7 +244,7 @@ class TestRetryProperties:
     def test_non_retryable_exception_raises_immediately(
         self, msg: str, max_retries: int
     ) -> None:
-        """Non-retryable exception → function is called exactly once.
+        """Non-retryable exception  function is called exactly once.
 
         **Validates: Requirements 2.5, 3.5, 11.1**
         """
@@ -273,7 +273,7 @@ class TestRetryProperties:
     def test_successful_call_single_attempt_correct_result(
         self, return_value: int | str, max_retries: int
     ) -> None:
-        """Successful call → called exactly once and returns the correct value.
+        """Successful call  called exactly once and returns the correct value.
 
         **Validates: Requirements 2.5, 3.5, 11.1**
         """
@@ -289,7 +289,7 @@ class TestRetryProperties:
 
     # ------------------------------------------------------------------
     # Property 4: _is_retryable is consistent - same exception always
-    #             gives same result
+    # gives same result
     # **Validates: Requirements 2.5, 3.5, 11.1**
     # ------------------------------------------------------------------
 

@@ -14,47 +14,47 @@ This guide walks you through setting up real services (no mocks) to test the AI 
 
 ### 1.1 Create Account
 1. Go to https://www.atlassian.com/software/jira/free
-2. Click "Get it free" → sign up with email
+2. Click "Get it free"  sign up with email
 3. Choose a site name (e.g., `myteam.atlassian.net`)
 4. Select "Scrum" or "Kanban" template
 
 ### 1.2 Create Bot User
-1. In Jira: Settings → User Management → Invite users
+1. In Jira: Settings  User Management  Invite users
 2. Invite a new user as `ai-developer-bot`
-3. Note the username → this goes in `.env` as `JIRA_BOT_USERNAME`
+3. Note the username  this goes in `.env` as `JIRA_BOT_USERNAME`
 
 ### 1.3 Get API Token
 1. Go to https://id.atlassian.com/manage-profile/security/api-tokens
-2. "Create API token" → name it → copy
+2. "Create API token"  name it  copy
 3. Paste in `.env` as `JIRA_API_TOKEN`
 
 ### 1.4 Add "Repository" Custom Field
-1. Jira → Project Settings → Fields
-2. "Create custom field" → Type: "Short text" → Name: `Repository`
+1. Jira  Project Settings  Fields
+2. "Create custom field"  Type: "Short text"  Name: `Repository`
 3. Add it to your project
 
 ## Step 2: Git Provider Setup
 
 ### GitHub
-1. https://github.com/settings/tokens → "Generate new token (classic)"
+1. https://github.com/settings/tokens  "Generate new token (classic)"
 2. Scopes: `repo` (all sub-options)
-3. Copy token → `.env` as `GITHUB_TOKEN`
+3. Copy token  `.env` as `GITHUB_TOKEN`
 
 ### GitLab
 1. https://gitlab.com/-/user_settings/personal_access_tokens
 2. Scopes: `api`
-3. Copy token → `.env` as `GITLAB_TOKEN`
+3. Copy token  `.env` as `GITLAB_TOKEN`
 
 ### Bitbucket
 1. https://id.atlassian.com/manage-profile/security/api-tokens
 2. Create an Atlassian API token with Bitbucket scopes
-3. Copy token → `.env` as `BITBUCKET_APP_PASSWORD`
+3. Copy token  `.env` as `BITBUCKET_APP_PASSWORD`
 4. `BITBUCKET_USERNAME` should be your Atlassian account email
 
 ## Step 3: LLM Provider Setup
 
 ### OpenAI (Recommended)
-1. https://platform.openai.com/api-keys → "Create new secret key"
+1. https://platform.openai.com/api-keys  "Create new secret key"
 2. Set in `.env`:
 ```env
 LLM_FAST_PROVIDER=openai

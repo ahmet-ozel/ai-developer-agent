@@ -11,7 +11,7 @@ An autonomous AI agent that reads Jira tasks, finds relevant code in your reposi
 ## How It Works
 
 ```
-Jira Task → TaskReader → CodeFinder → CodeWriter → CodeReviewer → Pull Request
+Jira Task  TaskReader  CodeFinder  CodeWriter  CodeReviewer  Pull Request
 ```
 
 1. **TaskReader** - Reads the Jira issue (summary, description, acceptance criteria, comments, linked issues) and estimates scope
@@ -105,7 +105,7 @@ TRIGGER_MODE=webhook
 JIRA_WEBHOOK_SECRET=your-random-secret
 ```
 
-In Jira: **Project Settings → Webhooks → Create**
+In Jira: **Project Settings  Webhooks  Create**
 - URL: `http://your-server:8000/webhook/jira`
 - Events: Issue Updated, Issue Created
 - Secret: same as `JIRA_WEBHOOK_SECRET`
@@ -209,7 +209,7 @@ CONFLUENCE_PARENT_PAGE_ID=12345
 | Variable | Default | Description |
 |---|---|---|
 | `DRY_RUN` | `false` | Skip all Git/Jira writes, log only |
-| `MAX_REVIEW_RETRIES` | `2` | Max CodeWriter → CodeReviewer iterations |
+| `MAX_REVIEW_RETRIES` | `2` | Max CodeWriter  CodeReviewer iterations |
 | `MAX_FILE_CHANGES` | `15` | Max files changed per task |
 | `MAX_FILES_PER_TASK` | `10` | Max files read by CodeFinder |
 | `MAX_CONTEXT_TOKENS` | `100000` | Token budget for LLM context |
@@ -307,7 +307,7 @@ python scripts/setup_test_data.py
 2. Set the **Repository** custom field to the target repo name (e.g., `my-backend-api`)
 3. Assign the issue to `ai-developer-bot`
 4. The agent picks it up (via polling or webhook)
-5. Pipeline runs: read task → find code → write changes → review → create PR
+5. Pipeline runs: read task  find code  write changes  review  create PR
 6. Agent comments on the Jira issue with the PR link
 7. Issue is transitioned to "In Review"
 

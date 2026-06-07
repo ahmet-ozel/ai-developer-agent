@@ -8,7 +8,7 @@ def format_jira_comment(agent_name: str, stage: str, message: str) -> str:
 
     Produces a comment in the format::
 
-        🤖 *{agent_name}* | Stage: {stage}
+         *{agent_name}* | Stage: {stage}
 
         {message}
 
@@ -20,7 +20,7 @@ def format_jira_comment(agent_name: str, stage: str, message: str) -> str:
     Returns:
         Formatted Jira comment string.
     """
-    return f"🤖 *{agent_name}* | Stage: {stage}\n\n{message}"
+    return f" *{agent_name}* | Stage: {stage}\n\n{message}"
 
 
 def mask_secrets(text: str, secrets: list[str]) -> str:

@@ -553,7 +553,7 @@ class TestReviewLoop:
 
     @pytest.mark.asyncio
     async def test_approve_on_first_try(self) -> None:
-        """CodeWriter returns change, CodeReviewer returns APPROVE → returns immediately."""
+        """CodeWriter returns change, CodeReviewer returns APPROVE  returns immediately."""
         orchestrator = self._make_orchestrator()
         task_ctx = _make_task_context()
         code_ctx = _make_code_context()
@@ -578,7 +578,7 @@ class TestReviewLoop:
 
     @pytest.mark.asyncio
     async def test_request_changes_retries(self) -> None:
-        """First review: REQUEST_CHANGES, second: APPROVE → 2 CodeWriter calls."""
+        """First review: REQUEST_CHANGES, second: APPROVE  2 CodeWriter calls."""
         orchestrator = self._make_orchestrator()
         task_ctx = _make_task_context()
         code_ctx = _make_code_context()
@@ -608,7 +608,7 @@ class TestReviewLoop:
 
     @pytest.mark.asyncio
     async def test_max_retries_exhausted(self) -> None:
-        """All reviews REQUEST_CHANGES → returns last (change, review) after max_retries+1 iterations."""
+        """All reviews REQUEST_CHANGES  returns last (change, review) after max_retries+1 iterations."""
         orchestrator = self._make_orchestrator()
         task_ctx = _make_task_context()
         code_ctx = _make_code_context()
@@ -633,7 +633,7 @@ class TestReviewLoop:
 
     @pytest.mark.asyncio
     async def test_reject_returns_immediately(self) -> None:
-        """CodeReviewer returns REJECT → returns immediately without retry."""
+        """CodeReviewer returns REJECT  returns immediately without retry."""
         orchestrator = self._make_orchestrator()
         task_ctx = _make_task_context()
         code_ctx = _make_code_context()
@@ -658,7 +658,7 @@ class TestReviewLoop:
 
     @pytest.mark.asyncio
     async def test_max_file_changes_halts(self) -> None:
-        """CodeWriter returns change with too many files → returns REJECT ReviewResult."""
+        """CodeWriter returns change with too many files  returns REJECT ReviewResult."""
         orchestrator = self._make_orchestrator(max_file_changes=2)
         task_ctx = _make_task_context()
         code_ctx = _make_code_context()
@@ -1264,10 +1264,10 @@ class TestReviewVerdictRoutingProperties:
     **Validates: Requirements 5.3, 5.4, 5.6**
 
     Verifies that the pipeline routes correctly based on the review verdict:
-    - APPROVE → PR creation attempt, success=True
-    - REJECT → halt with failure_stage="review", "REJECT" in failure_reason
-    - REJECT → at least one Jira comment after the start comment
-    - APPROVE → failure_stage is None
+    - APPROVE  PR creation attempt, success=True
+    - REJECT  halt with failure_stage="review", "REJECT" in failure_reason
+    - REJECT  at least one Jira comment after the start comment
+    - APPROVE  failure_stage is None
     """
 
     # ------------------------------------------------------------------
@@ -1480,9 +1480,9 @@ class TestReviewLoopRetryLimitProperties:
     **Validates: Requirements 5.5, 5.7**
 
     Verifies that _run_review_loop respects the max_retries parameter:
-    - All REQUEST_CHANGES → CodeWriter called exactly max_retries+1 times
-    - APPROVE on iteration K → CodeWriter called exactly K times
-    - max_retries=0 → exactly 1 iteration regardless of verdict
+    - All REQUEST_CHANGES  CodeWriter called exactly max_retries+1 times
+    - APPROVE on iteration K  CodeWriter called exactly K times
+    - max_retries=0  exactly 1 iteration regardless of verdict
     """
 
     def _make_orchestrator(self, **overrides: Any) -> PipelineOrchestrator:
@@ -1500,7 +1500,7 @@ class TestReviewLoopRetryLimitProperties:
         )
 
     # ------------------------------------------------------------------
-    # Property 16a: All REQUEST_CHANGES → CodeWriter called max_retries+1 times
+    # Property 16a: All REQUEST_CHANGES  CodeWriter called max_retries+1 times
     # ------------------------------------------------------------------
 
     @given(max_retries=st.integers(min_value=1, max_value=4))
@@ -1545,7 +1545,7 @@ class TestReviewLoopRetryLimitProperties:
         )
 
     # ------------------------------------------------------------------
-    # Property 16b: APPROVE on iteration K → CodeWriter called exactly K times
+    # Property 16b: APPROVE on iteration K  CodeWriter called exactly K times
     # ------------------------------------------------------------------
 
     @given(approve_on_iteration=st.integers(min_value=1, max_value=4))
@@ -1594,7 +1594,7 @@ class TestReviewLoopRetryLimitProperties:
         )
 
     # ------------------------------------------------------------------
-    # Property 16c: max_retries=0 → exactly 1 iteration regardless of verdict
+    # Property 16c: max_retries=0  exactly 1 iteration regardless of verdict
     # ------------------------------------------------------------------
 
     @given(verdict=st.sampled_from([ReviewVerdict.REQUEST_CHANGES, ReviewVerdict.APPROVE, ReviewVerdict.REJECT]))
@@ -1671,7 +1671,7 @@ class TestMaxFileChangeLimitProperties:
         return PipelineOrchestrator(config=settings, llm_router=llm_router)
 
     # ------------------------------------------------------------------
-    # Property 27a: changes + test_changes > max_file_changes → REJECT
+    # Property 27a: changes + test_changes > max_file_changes  REJECT
     # ------------------------------------------------------------------
 
     @given(
@@ -1748,7 +1748,7 @@ class TestMaxFileChangeLimitProperties:
         )
 
     # ------------------------------------------------------------------
-    # Property 27b: changes + test_changes <= max_file_changes → Reviewer IS called
+    # Property 27b: changes + test_changes <= max_file_changes  Reviewer IS called
     # ------------------------------------------------------------------
 
     @given(

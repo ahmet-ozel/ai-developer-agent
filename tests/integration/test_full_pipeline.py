@@ -3,14 +3,14 @@
 Tests the full pipeline from orchestrator.run() through all stages with
 all MCP-dependent agents mocked. Covers:
 - Happy path: full pipeline success with PR creation
-- Review loop: REQUEST_CHANGES → retry → APPROVE
-- Reject path: REJECT → halt
-- Max retry exhausted: all reviews REQUEST_CHANGES → halt
-- Large scope halt: LARGE scope → halt before CodeFinder
-- Task type skip: skip_task_types match → halt
+- Review loop: REQUEST_CHANGES  retry  APPROVE
+- Reject path: REJECT  halt
+- Max retry exhausted: all reviews REQUEST_CHANGES  halt
+- Large scope halt: LARGE scope  halt before CodeFinder
+- Task type skip: skip_task_types match  halt
 - Dry-run: no Git/Jira writes, returns success
 - Token budget trim: oversized CodeContext is trimmed
-- Max file change limit: too many changes → halt
+- Max file change limit: too many changes  halt
 
 Requirements: All pipeline flow requirements
 """
@@ -166,7 +166,7 @@ def _make_reject() -> ReviewResult:
 
 
 class TestHappyPath:
-    """Full pipeline success: TaskReader → CodeFinder → CodeWriter → APPROVE → PR."""
+    """Full pipeline success: TaskReader  CodeFinder  CodeWriter  APPROVE  PR."""
 
     @pytest.mark.asyncio
     async def test_full_pipeline_success_with_pr(self) -> None:
@@ -255,7 +255,7 @@ class TestHappyPath:
 
 
 class TestReviewLoop:
-    """REQUEST_CHANGES → retry → APPROVE."""
+    """REQUEST_CHANGES  retry  APPROVE."""
 
     @pytest.mark.asyncio
     async def test_request_changes_then_approve(self) -> None:
@@ -303,7 +303,7 @@ class TestReviewLoop:
 
 
 class TestRejectPath:
-    """REJECT → halt pipeline with Jira comment."""
+    """REJECT  halt pipeline with Jira comment."""
 
     @pytest.mark.asyncio
     async def test_reject_halts_pipeline(self) -> None:
@@ -347,7 +347,7 @@ class TestRejectPath:
 
 
 class TestMaxRetryExhausted:
-    """All reviews REQUEST_CHANGES → halt after max_review_retries."""
+    """All reviews REQUEST_CHANGES  halt after max_review_retries."""
 
     @pytest.mark.asyncio
     async def test_max_retry_exhausted_halts(self) -> None:
@@ -386,7 +386,7 @@ class TestMaxRetryExhausted:
 
 
 class TestLargeScopeHalt:
-    """LARGE scope → halt before CodeFinder."""
+    """LARGE scope  halt before CodeFinder."""
 
     @pytest.mark.asyncio
     async def test_large_scope_halts_before_code_finder(self) -> None:
@@ -419,7 +419,7 @@ class TestLargeScopeHalt:
 
 
 class TestTaskTypeSkip:
-    """skip_task_types match → halt pipeline."""
+    """skip_task_types match  halt pipeline."""
 
     @pytest.mark.asyncio
     async def test_skip_task_type_halts(self) -> None:
@@ -577,7 +577,7 @@ class TestTokenBudgetTrim:
 
 
 class TestMaxFileChangeLimit:
-    """Too many file changes → halt pipeline."""
+    """Too many file changes  halt pipeline."""
 
     @pytest.mark.asyncio
     async def test_max_file_change_limit_halts(self) -> None:
@@ -619,7 +619,7 @@ class TestMaxFileChangeLimit:
 
 
 class TestUnhandledException:
-    """Unhandled exception → error comment on Jira, returns failure result."""
+    """Unhandled exception  error comment on Jira, returns failure result."""
 
     @pytest.mark.asyncio
     async def test_unhandled_exception_returns_failure(self) -> None:

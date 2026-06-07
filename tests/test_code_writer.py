@@ -180,7 +180,7 @@ def _build_mock_agent_and_llm(llm_response: str) -> tuple[AsyncMock, AsyncMock]:
 
 
 # ---------------------------------------------------------------------------
-# Tests: Valid LLM response → correct CodeChange
+# Tests: Valid LLM response  correct CodeChange
 # ---------------------------------------------------------------------------
 
 

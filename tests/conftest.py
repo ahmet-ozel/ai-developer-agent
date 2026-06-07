@@ -9,7 +9,7 @@ Provides:
 from __future__ import annotations
 
 # Exclude e2e tests from default collection - run them separately with:
-#   pytest tests/e2e/ -v
+# pytest tests/e2e/ -v
 collect_ignore = ["e2e"]
 
 from typing import Any
@@ -247,7 +247,7 @@ def code_files(draw: st.DrawFn) -> CodeFile:
 def file_changes(draw: st.DrawFn) -> FileChange:
     """Generate valid FileChange instances respecting model validators.
 
-    DELETE → new_content=None, CREATE/MODIFY → new_content required.
+    DELETE  new_content=None, CREATE/MODIFY  new_content required.
     """
     change_type = draw(st.sampled_from(ChangeType))
     if change_type == ChangeType.DELETE:

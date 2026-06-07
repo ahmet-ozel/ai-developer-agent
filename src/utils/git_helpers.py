@@ -45,11 +45,11 @@ def detect_test_file_path(
     """Return the conventional test file path for *source_path*.
 
     Conventions:
-        - Python:     ``src/foo/bar.py``  → ``tests/test_bar.py``
-        - TypeScript: ``src/foo/bar.ts``  → ``src/foo/__tests__/bar.test.ts``
-        - Go:         ``pkg/foo/bar.go``  → ``pkg/foo/bar_test.go``
-        - Rust:       ``src/foo/bar.rs``  → ``tests/test_bar.rs``
-        - Java:       ``src/main/java/com/Foo.java`` → ``src/test/java/com/FooTest.java``
+        - Python:     ``src/foo/bar.py``   ``tests/test_bar.py``
+        - TypeScript: ``src/foo/bar.ts``   ``src/foo/__tests__/bar.test.ts``
+        - Go:         ``pkg/foo/bar.go``   ``pkg/foo/bar_test.go``
+        - Rust:       ``src/foo/bar.rs``   ``tests/test_bar.rs``
+        - Java:       ``src/main/java/com/Foo.java``  ``src/test/java/com/FooTest.java``
 
     Returns ``None`` when the tech stack is unknown or empty.
     """
@@ -112,7 +112,7 @@ def _rust_test_path(source_path: str) -> str:
 
 
 def _java_test_path(source_path: str) -> str:
-    # src/main/java/com/Foo.java → src/test/java/com/FooTest.java
+    # src/main/java/com/Foo.java  src/test/java/com/FooTest.java
     path = source_path.replace("src/main/", "src/test/", 1)
     parts = _posix_split(path)
     dirname = "/".join(parts[:-1]) if len(parts) > 1 else ""

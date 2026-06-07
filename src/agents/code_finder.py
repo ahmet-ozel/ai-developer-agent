@@ -411,9 +411,9 @@ class CodeFinderAgent:
 
         If the repo_name already contains a '/' it is returned as-is.
         Otherwise the owner/group from settings is prepended.
-        The repo slug is normalized (lowercased, spaces → hyphens).
+        The repo slug is normalized (lowercased, spaces  hyphens).
         """
-        # Normalize: "Rag Project" → "rag-project"
+        # Normalize: "Rag Project"  "rag-project"
         import re
         repo_name = repo_name.strip()
         repo_name = re.sub(r'[^a-zA-Z0-9/_.-]', '-', repo_name)

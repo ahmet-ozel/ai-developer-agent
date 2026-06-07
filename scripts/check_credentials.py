@@ -35,15 +35,15 @@ BOLD = "\033[1m"
 
 
 def ok(msg: str) -> None:
-    print(f"  {GREEN}✓{RESET} {msg}")
+    print(f"  {GREEN}{RESET} {msg}")
 
 
 def fail(msg: str) -> None:
-    print(f"  {RED}✗{RESET} {msg}")
+    print(f"  {RED}{RESET} {msg}")
 
 
 def warn(msg: str) -> None:
-    print(f"  {YELLOW}⚠{RESET} {msg}")
+    print(f"  {YELLOW}{RESET} {msg}")
 
 
 def header(msg: str) -> None:

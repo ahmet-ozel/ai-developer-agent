@@ -84,7 +84,7 @@ class TestJiraIssueLifecycle:
 
     @pytest.mark.asyncio
     async def test_issue_crud(self) -> None:
-        """Create → Read → Comment → Delete an issue."""
+        """Create  Read  Comment  Delete an issue."""
         async with httpx.AsyncClient(timeout=30) as client:
             # Find first available project
             resp = await client.get(

@@ -61,7 +61,7 @@ class _PlaceholderApp:
 def _build_mcp_app(settings: Settings) -> Any:
     """Create an MCPApp configured with the correct MCP servers.
 
-    Translates our Settings → mcp-agent's MCPSettings programmatically
+    Translates our Settings  mcp-agent's MCPSettings programmatically
     so no YAML file is needed at runtime.
     """
     if not _MCP_AGENT_AVAILABLE:

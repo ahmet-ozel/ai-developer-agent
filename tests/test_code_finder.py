@@ -3,7 +3,7 @@
 Tests:
 - File tree parsing and tech stack detection
 - Skippable file filtering (binary, lock, generated)
-- Line count limit enforcement (>1000 lines → skipped)
+- Line count limit enforcement (>1000 lines  skipped)
 - MAX_FILES_PER_TASK limit
 - Test file identification
 - File size limit enforcement (max_file_size_kb)
@@ -100,9 +100,9 @@ def _build_mock_llm(
     """Build a mock LLM that returns predefined responses.
 
     Call sequence:
-    1. file tree request → file_tree
-    2. relevant files identification → relevant_files_json
-    3+ file content requests → looked up from file_contents dict
+    1. file tree request  file_tree
+    2. relevant files identification  relevant_files_json
+    3+ file content requests  looked up from file_contents dict
     """
     if relevant_files_json is None:
         relevant_files_json = json.dumps(["src/auth/login.py", "src/auth/session.py"])
@@ -165,7 +165,7 @@ class TestFileTreeAndTechStack:
             result = await agent.find_code(task_ctx)
 
         assert isinstance(result, CodeContext)
-        # pyproject.toml → python, package.json → typescript
+        # pyproject.toml  python, package.json  typescript
         assert "python" in result.tech_stack
         assert "typescript" in result.tech_stack
 

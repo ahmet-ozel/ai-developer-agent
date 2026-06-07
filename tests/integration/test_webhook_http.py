@@ -111,12 +111,12 @@ async def client(app_and_settings: tuple[FastAPI, Settings, TaskLock]) -> AsyncC
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira - valid signature + bot assignee → 200 pipeline enqueued
+# POST /webhook/jira - valid signature + bot assignee  200 pipeline enqueued
 # ---------------------------------------------------------------------------
 
 
 class TestWebhookPipelineEnqueued:
-    """Req 1.1, 1.3, 1.4, 1.10: Valid signature + bot assignee + issue_updated → pipeline enqueued."""
+    """Req 1.1, 1.3, 1.4, 1.10: Valid signature + bot assignee + issue_updated  pipeline enqueued."""
 
     async def test_valid_request_returns_200_pipeline_enqueued(
         self, client: AsyncClient, pipeline_callback: AsyncMock
@@ -138,12 +138,12 @@ class TestWebhookPipelineEnqueued:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira - invalid signature → 401
+# POST /webhook/jira - invalid signature  401
 # ---------------------------------------------------------------------------
 
 
 class TestWebhookInvalidSignature:
-    """Req 1.1, 1.2: Invalid HMAC signature → 401."""
+    """Req 1.1, 1.2: Invalid HMAC signature  401."""
 
     async def test_invalid_signature_returns_401(self, client: AsyncClient):
         payload = _make_jira_payload()
@@ -160,12 +160,12 @@ class TestWebhookInvalidSignature:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira - malformed JSON → 400
+# POST /webhook/jira - malformed JSON  400
 # ---------------------------------------------------------------------------
 
 
 class TestWebhookMalformedPayload:
-    """Req 1.6: Malformed JSON body → 400."""
+    """Req 1.6: Malformed JSON body  400."""
 
     async def test_malformed_json_returns_400(self, client: AsyncClient):
         body = b"this is not json{{"
@@ -182,12 +182,12 @@ class TestWebhookMalformedPayload:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira - non-bot assignee → 200 ignored
+# POST /webhook/jira - non-bot assignee  200 ignored
 # ---------------------------------------------------------------------------
 
 
 class TestWebhookNonBotAssignee:
-    """Req 1.5: Valid signature but assignee is not the bot → 200 ignored."""
+    """Req 1.5: Valid signature but assignee is not the bot  200 ignored."""
 
     async def test_non_bot_assignee_returns_200_ignored(
         self, client: AsyncClient, pipeline_callback: AsyncMock
@@ -208,12 +208,12 @@ class TestWebhookNonBotAssignee:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira - duplicate task (lock held) → 200 ignored
+# POST /webhook/jira - duplicate task (lock held)  200 ignored
 # ---------------------------------------------------------------------------
 
 
 class TestWebhookDuplicateTask:
-    """Req 1.9: Task lock already held → 200 ignored."""
+    """Req 1.9: Task lock already held  200 ignored."""
 
     async def test_duplicate_task_returns_200_ignored(
         self,
@@ -242,12 +242,12 @@ class TestWebhookDuplicateTask:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira - wrong event type → 200 ignored
+# POST /webhook/jira - wrong event type  200 ignored
 # ---------------------------------------------------------------------------
 
 
 class TestWebhookWrongEventType:
-    """Req 1.7: Unsupported event type (e.g. jira:issue_created) → 200 ignored."""
+    """Req 1.7: Unsupported event type (e.g. jira:issue_created)  200 ignored."""
 
     async def test_wrong_event_type_returns_200_ignored(
         self, client: AsyncClient, pipeline_callback: AsyncMock
@@ -269,7 +269,7 @@ class TestWebhookWrongEventType:
 
 
 # ---------------------------------------------------------------------------
-# GET /health → 200
+# GET /health  200
 # ---------------------------------------------------------------------------
 
 

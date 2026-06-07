@@ -500,10 +500,10 @@ def should_skip_task(task_ctx: TaskContext, settings: Settings) -> tuple[bool, s
     """Check whether a task should be skipped based on task type filtering.
 
     Rules:
-    - If task_ctx.issue_type is None, no filtering can be applied → don't skip.
-    - If issue_type is in settings.skip_task_types → skip.
-    - If settings.allowed_task_types is non-empty and issue_type is not in it → skip.
-    - Otherwise → don't skip.
+    - If task_ctx.issue_type is None, no filtering can be applied  don't skip.
+    - If issue_type is in settings.skip_task_types  skip.
+    - If settings.allowed_task_types is non-empty and issue_type is not in it  skip.
+    - Otherwise  don't skip.
 
     Returns:
         (should_skip, reason) - reason is empty string when not skipping.

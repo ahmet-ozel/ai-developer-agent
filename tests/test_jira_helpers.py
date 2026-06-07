@@ -20,7 +20,7 @@ from src.utils.jira_helpers import format_jira_comment, mask_secrets
 class TestFormatJiraComment:
     def test_basic_format(self):
         result = format_jira_comment("task_reader", "reading", "Started processing")
-        assert result == "🤖 *task_reader* | Stage: reading\n\nStarted processing"
+        assert result == " *task_reader* | Stage: reading\n\nStarted processing"
 
     def test_contains_agent_name(self):
         result = format_jira_comment("code_writer", "writing", "Generating code")
@@ -42,11 +42,11 @@ class TestFormatJiraComment:
 
     def test_empty_message(self):
         result = format_jira_comment("agent", "stage", "")
-        assert "🤖 *agent* | Stage: stage" in result
+        assert " *agent* | Stage: stage" in result
 
     def test_empty_agent_name(self):
         result = format_jira_comment("", "stage", "msg")
-        assert "🤖 ** | Stage: stage" in result
+        assert " ** | Stage: stage" in result
 
     def test_empty_stage(self):
         result = format_jira_comment("agent", "", "msg")
@@ -99,7 +99,7 @@ class TestMaskSecrets:
     def test_overlapping_secrets(self):
         text = "abcdef"
         result = mask_secrets(text, ["abc", "cde"])
-        # "abc" → "***" first pass gives "***def", then "cde" not found
+        # "abc"  "***" first pass gives "***def", then "cde" not found
         # But with longest-first: both are len 3, order may vary
         assert "abc" not in result
 
@@ -285,7 +285,7 @@ class TestJiraCommentFormatProperty:
     ) -> None:
         """Every Jira comment starts with the robot emoji."""
         result = format_jira_comment(agent_name, stage, message)
-        assert result.startswith("🤖")
+        assert result.startswith("")
 
     @given(agent_name=_agent_names, stage=_stage_names, message=_messages)
     @h_settings(max_examples=100)

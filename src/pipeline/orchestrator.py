@@ -1,7 +1,7 @@
 ﻿"""Pipeline Orchestrator - manages the deterministic pipeline flow.
 
-Runs the full pipeline: TaskReader → scope check → task type filter →
-CodeFinder → token budget → review loop → PR creation. Handles Jira
+Runs the full pipeline: TaskReader  scope check  task type filter
+CodeFinder  token budget  review loop  PR creation. Handles Jira
 communication (comments, transitions) with dry-run support and secret
 masking. Uses try/finally for cleanup guarantee.
 
@@ -99,11 +99,11 @@ class PipelineOrchestrator:
         a. Create PipelineLogger
         b. Comment on Jira: "AI Developer started processing"
         c. Transition Jira to "In Progress"
-        d. TaskReader → read task
-        e. Scope check (LARGE → halt, comment on Jira)
+        d. TaskReader  read task
+        e. Scope check (LARGE  halt, comment on Jira)
         f. Task type filtering (should_skip_task)
-        g. CodeFinder → find code
-        h. Token budget → trim_code_context
+        g. CodeFinder  find code
+        h. Token budget  trim_code_context
         i. Review loop
         j. PR creation
         k. Confluence documentation
@@ -135,7 +135,7 @@ class PipelineOrchestrator:
                 if doc_url:
                     await self._comment_on_jira(
                         issue_key,
-                        format_jira_comment("orchestrator", "docs", f"📄 Documentation: {doc_url}"),
+                        format_jira_comment("orchestrator", "docs", f" Documentation: {doc_url}"),
                     )
             except Exception:
                 logger.warning(
@@ -155,7 +155,7 @@ class PipelineOrchestrator:
                 ),
             )
 
-            # c. Transition Jira → In Progress (non-blocking)
+            # c. Transition Jira  In Progress (non-blocking)
             if self._config.jira_transition_in_progress:
                 try:
                     await self._transition_jira(
@@ -168,7 +168,7 @@ class PipelineOrchestrator:
                         exc_info=True,
                     )
 
-            # d. TaskReader → read task
+            # d. TaskReader  read task
             pl.log_stage_start("task_reader", "task_reader")
             t0 = time.monotonic()
             task_reader = TaskReaderAgent(
@@ -186,7 +186,7 @@ class PipelineOrchestrator:
                     }
                 )
 
-            # e. Scope check - LARGE → halt
+            # e. Scope check - LARGE  halt
             if _task_ctx.estimated_scope == TaskScope.LARGE:
                 msg = (
                     "Task scope estimated as LARGE. "
@@ -228,7 +228,7 @@ class PipelineOrchestrator:
                 await _publish_to_confluence(result)
                 return result
 
-            # g. CodeFinder → find code
+            # g. CodeFinder  find code
             pl.log_stage_start("code_finder", "code_finder")
             t0 = time.monotonic()
             code_finder = CodeFinderAgent(
@@ -244,7 +244,7 @@ class PipelineOrchestrator:
                     update={"repository_name": code_ctx.repository_name}
                 )
 
-            # h. Token budget → trim
+            # h. Token budget  trim
             code_ctx = trim_code_context(
                 code_ctx, self._config.max_context_tokens, _task_ctx
             )
@@ -307,7 +307,7 @@ class PipelineOrchestrator:
                 format_jira_comment("orchestrator", "complete", completion_msg),
             )
 
-            # Transition Jira → In Review (non-blocking)
+            # Transition Jira  In Review (non-blocking)
             if self._config.jira_transition_in_review:
                 try:
                     await self._transition_jira(
@@ -480,7 +480,7 @@ class PipelineOrchestrator:
         code_ctx: CodeContext,
         max_retries: int,
     ) -> tuple[CodeChange, ReviewResult]:
-        """Run the CodeWriter ↔ CodeReviewer review loop.
+        """Run the CodeWriter  CodeReviewer review loop.
 
         Runs up to max_retries + 1 iterations. On REQUEST_CHANGES the
         reviewer's feedback is passed back to the writer. On APPROVE or
@@ -540,15 +540,15 @@ class PipelineOrchestrator:
             # c. Review code
             review = await code_reviewer.review_code(task_ctx, code_ctx, code_change)
 
-            # d. APPROVE → done
+            # d. APPROVE  done
             if review.verdict == ReviewVerdict.APPROVE:
                 return code_change, review
 
-            # e. REJECT → return immediately (caller halts)
+            # e. REJECT  return immediately (caller halts)
             if review.verdict == ReviewVerdict.REJECT:
                 return code_change, review
 
-            # f. REQUEST_CHANGES → set feedback and continue
+            # f. REQUEST_CHANGES  set feedback and continue
             feedback = review.feedback_for_rewrite
 
         # Exhausted retries - return last pair
@@ -582,7 +582,7 @@ class PipelineOrchestrator:
             )
             return None
 
-        # 2. auto_create_pr disabled → comment changes summary on Jira
+        # 2. auto_create_pr disabled  comment changes summary on Jira
         if not self._config.auto_create_pr:
             changes_summary = "Changes summary (no PR created):\n" + "\n".join(
                 f"- {fc.path} ({fc.change_type.value})" for fc in all_changes
@@ -651,7 +651,7 @@ class PipelineOrchestrator:
         pr_title: str,
         pr_body: str,
     ) -> str | None:
-        """GitLab: create branch → commit files → create MR."""
+        """GitLab: create branch  commit files  create MR."""
         client = GitLabClient(self._config)
         repo = task_ctx.repository_name
 
@@ -697,7 +697,7 @@ class PipelineOrchestrator:
         pr_title: str,
         pr_body: str,
     ) -> str | None:
-        """Bitbucket: commit files (auto-creates branch) → create PR."""
+        """Bitbucket: commit files (auto-creates branch)  create PR."""
         client = BitbucketClient(self._config)
         repo = task_ctx.repository_name
 

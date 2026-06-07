@@ -2,7 +2,7 @@
 
 Prevents duplicate pipeline executions for the same Jira issue.
 
-⚠️ LIMITATION: TaskLock is in-memory and only works in single-process deployments.
+ LIMITATION: TaskLock is in-memory and only works in single-process deployments.
 For multi-replica deployments, use Redis-based distributed lock or PostgreSQL advisory lock.
 Docker must use --workers 1 for this reason.
 """

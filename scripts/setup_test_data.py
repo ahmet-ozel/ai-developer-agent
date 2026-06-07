@@ -114,7 +114,7 @@ async def setup_github_repo() -> str | None:
     owner = os.getenv("GITHUB_OWNER", "")
 
     if not token or not owner:
-        print(f"  {RED}✗{RESET} GITHUB_TOKEN or GITHUB_OWNER not set")
+        print(f"  {RED}{RESET} GITHUB_TOKEN or GITHUB_OWNER not set")
         return None
 
     headers = {
@@ -126,7 +126,7 @@ async def setup_github_repo() -> str | None:
         # Check if repo already exists
         resp = await client.get(f"https://api.github.com/repos/{owner}/{TEST_REPO_NAME}")
         if resp.status_code == 200:
-            print(f"  {YELLOW}⚠{RESET} Repo {owner}/{TEST_REPO_NAME} already exists - skipping creation")
+            print(f"  {YELLOW}{RESET} Repo {owner}/{TEST_REPO_NAME} already exists - skipping creation")
             return f"https://github.com/{owner}/{TEST_REPO_NAME}"
 
         # Create repo
@@ -140,10 +140,10 @@ async def setup_github_repo() -> str | None:
             },
         )
         if resp.status_code not in (201, 200):
-            print(f"  {RED}✗{RESET} Failed to create repo: {resp.status_code} {resp.text[:200]}")
+            print(f"  {RED}{RESET} Failed to create repo: {resp.status_code} {resp.text[:200]}")
             return None
 
-        print(f"  {GREEN}✓{RESET} Created repo: {owner}/{TEST_REPO_NAME}")
+        print(f"  {GREEN}{RESET} Created repo: {owner}/{TEST_REPO_NAME}")
 
         # Wait a moment for GitHub to initialize
         await asyncio.sleep(2)
@@ -159,9 +159,9 @@ async def setup_github_repo() -> str | None:
                 },
             )
             if resp.status_code in (200, 201):
-                print(f"  {GREEN}✓{RESET} Added {filename}")
+                print(f"  {GREEN}{RESET} Added {filename}")
             else:
-                print(f"  {RED}✗{RESET} Failed to add {filename}: {resp.status_code}")
+                print(f"  {RED}{RESET} Failed to add {filename}: {resp.status_code}")
 
         return f"https://github.com/{owner}/{TEST_REPO_NAME}"
 
@@ -177,7 +177,7 @@ async def setup_jira_issue() -> str | None:
     bot_username = os.getenv("JIRA_BOT_USERNAME", "")
 
     if not all([url, username, token]):
-        print(f"  {RED}✗{RESET} Jira credentials not set")
+        print(f"  {RED}{RESET} Jira credentials not set")
         return None
 
     auth = (username, token)
@@ -189,9 +189,9 @@ async def setup_jira_issue() -> str | None:
             auth=auth,
         )
         if resp.status_code == 200:
-            print(f"  {YELLOW}⚠{RESET} Project {TEST_PROJECT_KEY} already exists")
+            print(f"  {YELLOW}{RESET} Project {TEST_PROJECT_KEY} already exists")
         else:
-            print(f"  {YELLOW}⚠{RESET} Project {TEST_PROJECT_KEY} not found - you need to create it manually in Jira")
+            print(f"  {YELLOW}{RESET} Project {TEST_PROJECT_KEY} not found - you need to create it manually in Jira")
             print(f"      Go to: {url}/secure/admin/CreateProject!default.jspa")
             print(f"      Use key: {TEST_PROJECT_KEY}")
 
@@ -206,10 +206,10 @@ async def setup_jira_issue() -> str | None:
             for f in fields:
                 if f.get("name", "").lower() == "repository":
                     repo_field_id = f["id"]
-                    print(f"  {GREEN}✓{RESET} Found 'repository' custom field: {repo_field_id}")
+                    print(f"  {GREEN}{RESET} Found 'repository' custom field: {repo_field_id}")
                     break
             if not repo_field_id:
-                print(f"  {YELLOW}⚠{RESET} 'repository' custom field not found - create it in Jira project settings")
+                print(f"  {YELLOW}{RESET} 'repository' custom field not found - create it in Jira project settings")
                 print(f"      Type: Short text, Name: repository")
 
         # 3. Create test issue
@@ -252,7 +252,7 @@ async def setup_jira_issue() -> str | None:
         )
         if resp.status_code in (200, 201):
             issue_key = resp.json()["key"]
-            print(f"  {GREEN}✓{RESET} Created issue: {issue_key}")
+            print(f"  {GREEN}{RESET} Created issue: {issue_key}")
 
             # 4. Assign to bot user if configured
             if bot_username:
@@ -268,13 +268,13 @@ async def setup_jira_issue() -> str | None:
                         auth=auth,
                         json={"accountId": account_id},
                     )
-                    print(f"  {GREEN}✓{RESET} Assigned {issue_key} to {bot_username}")
+                    print(f"  {GREEN}{RESET} Assigned {issue_key} to {bot_username}")
                 else:
-                    print(f"  {YELLOW}⚠{RESET} Bot user '{bot_username}' not found - assign manually")
+                    print(f"  {YELLOW}{RESET} Bot user '{bot_username}' not found - assign manually")
 
             return issue_key
         else:
-            print(f"  {RED}✗{RESET} Failed to create issue: {resp.status_code} {resp.text[:300]}")
+            print(f"  {RED}{RESET} Failed to create issue: {resp.status_code} {resp.text[:300]}")
             return None
 
 
@@ -294,7 +294,7 @@ async def main() -> None:
     if provider == "github":
         repo_url = await setup_github_repo()
     else:
-        print(f"  {YELLOW}⚠{RESET} Auto-setup only supports GitHub for now. Create repo manually for {provider}.")
+        print(f"  {YELLOW}{RESET} Auto-setup only supports GitHub for now. Create repo manually for {provider}.")
 
     # Jira issue
     print(f"\n{BOLD}Jira Issue{RESET}")

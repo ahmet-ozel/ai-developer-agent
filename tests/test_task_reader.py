@@ -117,7 +117,7 @@ def _build_mock_llm(
 
 
 # ---------------------------------------------------------------------------
-# Tests: Valid issue data → correct TaskContext
+# Tests: Valid issue data  correct TaskContext
 # ---------------------------------------------------------------------------
 
 
@@ -642,7 +642,7 @@ class TestShouldSkipTask:
     """Test should_skip_task filtering logic."""
 
     def test_skip_when_type_in_skip_list(self) -> None:
-        """Task type in skip_task_types → should skip."""
+        """Task type in skip_task_types  should skip."""
         settings = _make_settings(skip_task_types=["Epic", "Bug"])
         ctx = _make_task_context(issue_type="Bug")
         skip, reason = should_skip_task(ctx, settings)
@@ -650,7 +650,7 @@ class TestShouldSkipTask:
         assert "skip list" in reason
 
     def test_no_skip_when_type_not_in_skip_list(self) -> None:
-        """Task type NOT in skip_task_types → should not skip."""
+        """Task type NOT in skip_task_types  should not skip."""
         settings = _make_settings(skip_task_types=["Epic"])
         ctx = _make_task_context(issue_type="Bug")
         skip, reason = should_skip_task(ctx, settings)
@@ -658,7 +658,7 @@ class TestShouldSkipTask:
         assert reason == ""
 
     def test_no_skip_when_allowed_types_empty(self) -> None:
-        """Empty allowed_task_types → any type allowed, should not skip."""
+        """Empty allowed_task_types  any type allowed, should not skip."""
         settings = _make_settings(allowed_task_types=[])
         ctx = _make_task_context(issue_type="Story")
         skip, reason = should_skip_task(ctx, settings)
@@ -666,7 +666,7 @@ class TestShouldSkipTask:
         assert reason == ""
 
     def test_no_skip_when_type_in_allowed_list(self) -> None:
-        """Task type in allowed_task_types → should not skip."""
+        """Task type in allowed_task_types  should not skip."""
         settings = _make_settings(allowed_task_types=["Bug", "Story"])
         ctx = _make_task_context(issue_type="Bug")
         skip, reason = should_skip_task(ctx, settings)
@@ -674,7 +674,7 @@ class TestShouldSkipTask:
         assert reason == ""
 
     def test_skip_when_type_not_in_allowed_list(self) -> None:
-        """Task type NOT in non-empty allowed_task_types → should skip."""
+        """Task type NOT in non-empty allowed_task_types  should skip."""
         settings = _make_settings(allowed_task_types=["Story", "Task"])
         ctx = _make_task_context(issue_type="Bug")
         skip, reason = should_skip_task(ctx, settings)
@@ -682,7 +682,7 @@ class TestShouldSkipTask:
         assert "allowed list" in reason
 
     def test_no_skip_when_issue_type_is_none(self) -> None:
-        """None issue_type → can't filter, should not skip."""
+        """None issue_type  can't filter, should not skip."""
         settings = _make_settings(skip_task_types=["Bug"], allowed_task_types=["Story"])
         ctx = _make_task_context(issue_type=None)
         skip, reason = should_skip_task(ctx, settings)
@@ -945,7 +945,7 @@ class TestProperty5bMissingRepository:
         """When repository_name is empty, RepositoryFieldMissingError should be raised
         if the pipeline attempts to build a TaskContext from this data.
 
-        Simulates the check in _read_task_impl: if not repository_name → raise.
+        Simulates the check in _read_task_impl: if not repository_name  raise.
 
         **Validates: Requirements 2.3**
         """

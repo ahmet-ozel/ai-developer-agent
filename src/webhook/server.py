@@ -72,12 +72,12 @@ class WebhookServer:
 
         Flow:
         1. Read raw body bytes
-        2. Validate HMAC signature → 401 if invalid
-        3. Parse JSON payload → 400 if malformed
-        4. Parse into WebhookEvent → 400 if invalid
-        5. Check bot assignment → 200 "ignored" if not
-        6. Check event type → 200 "ignored" if not jira:issue_updated
-        7. Acquire task lock → 200 "ignored" if already locked
+        2. Validate HMAC signature  401 if invalid
+        3. Parse JSON payload  400 if malformed
+        4. Parse into WebhookEvent  400 if invalid
+        5. Check bot assignment  200 "ignored" if not
+        6. Check event type  200 "ignored" if not jira:issue_updated
+        7. Acquire task lock  200 "ignored" if already locked
         8. Enqueue pipeline via BackgroundTask
         9. Return 200 "pipeline enqueued"
         """

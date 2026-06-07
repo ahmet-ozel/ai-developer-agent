@@ -1,6 +1,6 @@
 ﻿"""E2E test for the webhook server - starts real FastAPI, sends real webhook payload.
 
-Tests the full webhook flow: signature validation → event parsing → bot check → pipeline enqueue.
+Tests the full webhook flow: signature validation  event parsing  bot check  pipeline enqueue.
 Does NOT require external services - uses the real app with DRY_RUN=true.
 """
 
@@ -99,7 +99,7 @@ class TestWebhookServerLive:
 
     @pytest.mark.asyncio
     async def test_valid_webhook_enqueues_pipeline(self, app) -> None:
-        """Valid webhook with correct signature and bot assignee → pipeline enqueued."""
+        """Valid webhook with correct signature and bot assignee  pipeline enqueued."""
         secret = os.environ.get("JIRA_WEBHOOK_SECRET", "e2e-test-secret")
         bot = os.environ.get("JIRA_BOT_USERNAME", "ai-developer-bot")
 
@@ -125,7 +125,7 @@ class TestWebhookServerLive:
 
     @pytest.mark.asyncio
     async def test_invalid_signature_rejected(self, app) -> None:
-        """Invalid signature → 401."""
+        """Invalid signature  401."""
         payload = _make_jira_payload("TEST-2", "ai-developer-bot")
         body = json.dumps(payload).encode()
 
@@ -144,7 +144,7 @@ class TestWebhookServerLive:
 
     @pytest.mark.asyncio
     async def test_non_bot_assignee_ignored(self, app) -> None:
-        """Webhook for non-bot assignee → ignored."""
+        """Webhook for non-bot assignee  ignored."""
         secret = os.environ.get("JIRA_WEBHOOK_SECRET", "e2e-test-secret")
 
         payload = _make_jira_payload("TEST-3", "some-other-user")

@@ -65,7 +65,7 @@ class AllProvidersFailedError(Exception):
 
 
 # ---------------------------------------------------------------------------
-# Provider → AugmentedLLM class mapping
+# Provider  AugmentedLLM class mapping
 # ---------------------------------------------------------------------------
 
 _PROVIDER_LLM_MAP: dict[str, type] = {
