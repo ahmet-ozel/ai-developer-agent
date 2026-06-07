@@ -1,4 +1,4 @@
-# End-to-End Testing Guide
+﻿# End-to-End Testing Guide
 
 This guide walks you through setting up real services (no mocks) to test the AI Developer Agent pipeline end-to-end.
 
@@ -7,7 +7,7 @@ This guide walks you through setting up real services (no mocks) to test the AI 
 | Service | URL | Free Plan |
 |---------|-----|-----------|
 | Jira Cloud | https://www.atlassian.com/software/jira/free | Up to 10 users |
-| GitHub / GitLab / Bitbucket | — | Free tier sufficient |
+| GitHub / GitLab / Bitbucket |  -  | Free tier sufficient |
 | ngrok (webhook mode only) | https://ngrok.com | Free plan works |
 
 ## Step 1: Jira Cloud Setup
@@ -70,7 +70,7 @@ LLM_STRONG_API_KEY=sk-...
 ```bash
 cd ai-developer-agent
 cp .env.example .env
-# Edit .env — fill in all credentials
+# Edit .env  -  fill in all credentials
 ```
 
 ## Step 5: Verify Credentials
@@ -115,7 +115,7 @@ ngrok http 8000
 ```
 
 ### DRY_RUN Mode
-Start with `DRY_RUN=true` — logs everything but skips actual Git/Jira writes:
+Start with `DRY_RUN=true`  -  logs everything but skips actual Git/Jira writes:
 ```env
 DRY_RUN=true
 ```

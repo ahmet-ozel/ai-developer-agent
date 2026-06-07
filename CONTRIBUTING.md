@@ -1,4 +1,4 @@
-# Contributing
+﻿# Contributing
 
 Thanks for your interest in contributing to AI Developer Agent! Here's how to get started.
 
@@ -39,13 +39,13 @@ pytest -k "not Property"
 
 ## Project Structure
 
-- `src/agents/` — AI agent implementations (task reader, code finder, writer, reviewer)
-- `src/clients/` — Direct REST API clients for GitLab and Bitbucket
-- `src/config/` — Settings and MCP server configuration
-- `src/pipeline/` — Pipeline orchestration, LLM routing, models
-- `src/webhook/` — FastAPI webhook server and validation
-- `src/utils/` — Git and Jira helper utilities
-- `tests/` — Unit tests and property-based tests (Hypothesis)
+- `src/agents/`  -  AI agent implementations (task reader, code finder, writer, reviewer)
+- `src/clients/`  -  Direct REST API clients for GitLab and Bitbucket
+- `src/config/`  -  Settings and MCP server configuration
+- `src/pipeline/`  -  Pipeline orchestration, LLM routing, models
+- `src/webhook/`  -  FastAPI webhook server and validation
+- `src/utils/`  -  Git and Jira helper utilities
+- `tests/`  -  Unit tests and property-based tests (Hypothesis)
 
 ## Pull Request Process
 
