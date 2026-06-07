@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Create test data on real services for e2e testing.
 
 Usage:
@@ -64,7 +64,7 @@ def divide(a: float, b: float) -> float:
     """
     return a / b
 ''',
-    "user_service.py": '''"""User service module — intentionally has issues for the AI agent to fix."""
+    "user_service.py": '''"""User service module - intentionally has issues for the AI agent to fix."""
 
 from dataclasses import dataclass
 
@@ -99,8 +99,8 @@ This repository is used for end-to-end testing of the AI Developer Agent.
 
 ## Files
 
-- `calculator.py` — Simple calculator with a division-by-zero bug
-- `user_service.py` — User service with missing input validation
+- `calculator.py` - Simple calculator with a division-by-zero bug
+- `user_service.py` - User service with missing input validation
 ''',
 }
 
@@ -126,7 +126,7 @@ async def setup_github_repo() -> str | None:
         # Check if repo already exists
         resp = await client.get(f"https://api.github.com/repos/{owner}/{TEST_REPO_NAME}")
         if resp.status_code == 200:
-            print(f"  {YELLOW}⚠{RESET} Repo {owner}/{TEST_REPO_NAME} already exists — skipping creation")
+            print(f"  {YELLOW}⚠{RESET} Repo {owner}/{TEST_REPO_NAME} already exists - skipping creation")
             return f"https://github.com/{owner}/{TEST_REPO_NAME}"
 
         # Create repo
@@ -191,7 +191,7 @@ async def setup_jira_issue() -> str | None:
         if resp.status_code == 200:
             print(f"  {YELLOW}⚠{RESET} Project {TEST_PROJECT_KEY} already exists")
         else:
-            print(f"  {YELLOW}⚠{RESET} Project {TEST_PROJECT_KEY} not found — you need to create it manually in Jira")
+            print(f"  {YELLOW}⚠{RESET} Project {TEST_PROJECT_KEY} not found - you need to create it manually in Jira")
             print(f"      Go to: {url}/secure/admin/CreateProject!default.jspa")
             print(f"      Use key: {TEST_PROJECT_KEY}")
 
@@ -209,7 +209,7 @@ async def setup_jira_issue() -> str | None:
                     print(f"  {GREEN}✓{RESET} Found 'repository' custom field: {repo_field_id}")
                     break
             if not repo_field_id:
-                print(f"  {YELLOW}⚠{RESET} 'repository' custom field not found — create it in Jira project settings")
+                print(f"  {YELLOW}⚠{RESET} 'repository' custom field not found - create it in Jira project settings")
                 print(f"      Type: Short text, Name: repository")
 
         # 3. Create test issue
@@ -270,7 +270,7 @@ async def setup_jira_issue() -> str | None:
                     )
                     print(f"  {GREEN}✓{RESET} Assigned {issue_key} to {bot_username}")
                 else:
-                    print(f"  {YELLOW}⚠{RESET} Bot user '{bot_username}' not found — assign manually")
+                    print(f"  {YELLOW}⚠{RESET} Bot user '{bot_username}' not found - assign manually")
 
             return issue_key
         else:
@@ -283,7 +283,7 @@ async def setup_jira_issue() -> str | None:
 
 async def main() -> None:
     print(f"{BOLD}{'='*60}")
-    print("  AI Developer Agent — Test Data Setup")
+    print("  AI Developer Agent - Test Data Setup")
     print(f"{'='*60}{RESET}")
 
     provider = os.getenv("GIT_PROVIDER", "github")

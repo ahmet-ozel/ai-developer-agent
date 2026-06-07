@@ -1,4 +1,4 @@
-"""Git helper utilities for branch naming, test file detection, tech stack detection, and file filtering."""
+﻿"""Git helper utilities for branch naming, test file detection, tech stack detection, and file filtering."""
 
 from __future__ import annotations
 
@@ -195,12 +195,12 @@ def is_skippable_file(path: str) -> tuple[bool, str]:
     if basename in _LOCK_FILES:
         return True, "lock_file"
 
-    # Generated file check — by extension
+    # Generated file check - by extension
     # Need to check compound extensions like .min.js
     if _has_generated_extension(path):
         return True, "generated"
 
-    # Generated file check — by directory
+    # Generated file check - by directory
     normalised = path.replace("\\", "/")
     for gen_dir in _GENERATED_DIRS:
         if normalised.startswith(gen_dir) or f"/{gen_dir}" in normalised:

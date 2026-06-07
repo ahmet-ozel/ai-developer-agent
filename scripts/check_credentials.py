@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Credential health check — verifies all configured services are reachable.
+﻿#!/usr/bin/env python3
+"""Credential health check - verifies all configured services are reachable.
 
 Usage:
     python scripts/check_credentials.py
@@ -86,7 +86,7 @@ async def check_jira() -> None:
     if bot:
         ok(f"Bot username configured: {bot}")
     else:
-        warn("JIRA_BOT_USERNAME is empty — webhook filtering won't work")
+        warn("JIRA_BOT_USERNAME is empty - webhook filtering won't work")
 
 
 async def check_github() -> None:
@@ -115,7 +115,7 @@ async def check_github() -> None:
             if "repo" in scopes:
                 ok(f"Token scopes: {scopes}")
             else:
-                warn(f"Token scopes: {scopes} — 'repo' scope recommended")
+                warn(f"Token scopes: {scopes} - 'repo' scope recommended")
         else:
             fail(f"HTTP {resp.status_code}: {resp.text[:200]}")
             results.append(False)
@@ -201,7 +201,7 @@ async def check_llm() -> None:
         endpoint = os.getenv(f"LLM_{tier.upper()}_ENDPOINT", "")
 
         if not provider:
-            warn(f"LLM_{tier.upper()}_PROVIDER is empty — skipping")
+            warn(f"LLM_{tier.upper()}_PROVIDER is empty - skipping")
             continue
 
         if not api_key:
@@ -224,10 +224,10 @@ async def check_llm() -> None:
                         },
                     )
                 if resp.status_code == 200:
-                    ok(f"{tier} tier: {provider}/{model} — working")
+                    ok(f"{tier} tier: {provider}/{model} - working")
                     results.append(True)
                 else:
-                    fail(f"{tier} tier: {provider}/{model} — HTTP {resp.status_code}: {resp.text[:200]}")
+                    fail(f"{tier} tier: {provider}/{model} - HTTP {resp.status_code}: {resp.text[:200]}")
                     results.append(False)
 
             elif provider == "anthropic":
@@ -246,10 +246,10 @@ async def check_llm() -> None:
                         },
                     )
                 if resp.status_code == 200:
-                    ok(f"{tier} tier: {provider}/{model} — working")
+                    ok(f"{tier} tier: {provider}/{model} - working")
                     results.append(True)
                 else:
-                    fail(f"{tier} tier: {provider}/{model} — HTTP {resp.status_code}: {resp.text[:200]}")
+                    fail(f"{tier} tier: {provider}/{model} - HTTP {resp.status_code}: {resp.text[:200]}")
                     results.append(False)
 
             elif provider == "google":
@@ -259,22 +259,22 @@ async def check_llm() -> None:
                         json={"contents": [{"parts": [{"text": "Say 'ok'"}]}]},
                     )
                 if resp.status_code == 200:
-                    ok(f"{tier} tier: {provider}/{model} — working")
+                    ok(f"{tier} tier: {provider}/{model} - working")
                     results.append(True)
                 else:
-                    fail(f"{tier} tier: {provider}/{model} — HTTP {resp.status_code}: {resp.text[:200]}")
+                    fail(f"{tier} tier: {provider}/{model} - HTTP {resp.status_code}: {resp.text[:200]}")
                     results.append(False)
             else:
-                warn(f"{tier} tier: unknown provider '{provider}' — skipping connectivity check")
+                warn(f"{tier} tier: unknown provider '{provider}' - skipping connectivity check")
 
         except Exception as e:
-            fail(f"{tier} tier: {provider}/{model} — {e}")
+            fail(f"{tier} tier: {provider}/{model} - {e}")
             results.append(False)
 
 
 async def main() -> None:
     print(f"{BOLD}{'='*60}")
-    print("  AI Developer Agent — Credential Health Check")
+    print("  AI Developer Agent - Credential Health Check")
     print(f"{'='*60}{RESET}")
 
     # Always check Jira

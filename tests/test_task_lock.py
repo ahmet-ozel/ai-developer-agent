@@ -1,4 +1,4 @@
-"""Tests for TaskLock mechanism."""
+﻿"""Tests for TaskLock mechanism."""
 
 import asyncio
 
@@ -42,7 +42,7 @@ async def test_different_keys_are_independent(task_lock: TaskLock) -> None:
 
 
 async def test_concurrent_acquire_only_one_wins(task_lock: TaskLock) -> None:
-    """Two concurrent acquires for the same key — only one should succeed."""
+    """Two concurrent acquires for the same key - only one should succeed."""
     results = await asyncio.gather(
         task_lock.acquire("PROJ-100"),
         task_lock.acquire("PROJ-100"),

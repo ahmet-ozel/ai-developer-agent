@@ -1,7 +1,7 @@
-"""E2E test for the webhook server — starts real FastAPI, sends real webhook payload.
+﻿"""E2E test for the webhook server - starts real FastAPI, sends real webhook payload.
 
 Tests the full webhook flow: signature validation → event parsing → bot check → pipeline enqueue.
-Does NOT require external services — uses the real app with DRY_RUN=true.
+Does NOT require external services - uses the real app with DRY_RUN=true.
 """
 
 from __future__ import annotations

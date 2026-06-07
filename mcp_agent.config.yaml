@@ -1,4 +1,4 @@
-# mcp-agent configuration — auto-generated
+﻿# mcp-agent configuration - auto-generated
 # MCP servers are configured dynamically via MCPServerConfigBuilder,
 # but this file provides the base config for MCPApp.
 
@@ -15,6 +15,6 @@ openai:
 
 # MCP servers are injected programmatically from Settings.
 # See src/config/mcp_servers.py for the dynamic config builder.
-# The servers below are placeholders — actual values come from .env
+# The servers below are placeholders - actual values come from .env
 mcp:
   servers: {}

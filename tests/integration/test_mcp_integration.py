@@ -1,4 +1,4 @@
-"""MCP integration tests.
+﻿"""MCP integration tests.
 
 Tests MCP server configuration generation, provider switching,
 invalid provider handling, and credential validation.
@@ -72,12 +72,12 @@ def _gitlab_settings(**overrides: Any) -> Settings:
 
 
 # ---------------------------------------------------------------------------
-# MCPServerConfigBuilder — config generation
+# MCPServerConfigBuilder - config generation
 # ---------------------------------------------------------------------------
 
 
 class TestMCPConfigGeneration:
-    """Req 7.1–7.6: Correct config generated for each git provider."""
+    """Req 7.1-7.6: Correct config generated for each git provider."""
 
     def test_bitbucket_config_structure(self) -> None:
         settings = _bitbucket_settings()
@@ -142,7 +142,7 @@ class TestMCPConfigGeneration:
 
 
 class TestProviderSwitching:
-    """Req 7.1–7.4: Switching provider changes the active git server."""
+    """Req 7.1-7.4: Switching provider changes the active git server."""
 
     def test_bitbucket_active_server_name(self) -> None:
         settings = _bitbucket_settings()
@@ -287,7 +287,7 @@ class TestCredentialValidation:
 
 
 # ---------------------------------------------------------------------------
-# Atlassian MCP Mock — simulated Jira operations
+# Atlassian MCP Mock - simulated Jira operations
 # ---------------------------------------------------------------------------
 
 
@@ -319,7 +319,7 @@ class TestAtlassianMCPMock:
 
 
 # ---------------------------------------------------------------------------
-# Git MCP Mock — simulated Git operations
+# Git MCP Mock - simulated Git operations
 # ---------------------------------------------------------------------------
 
 

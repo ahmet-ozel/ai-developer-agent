@@ -1,4 +1,4 @@
-"""MCPApp factory and pipeline entry point.
+﻿"""MCPApp factory and pipeline entry point.
 
 Builds an MCPApp per-pipeline-run with the correct MCP server config
 derived from Settings. Ensures proper MCP server lifecycle management.
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# mcp-agent imports — graceful fallback when not installed
+# mcp-agent imports - graceful fallback when not installed
 # ---------------------------------------------------------------------------
 
 _MCP_AGENT_AVAILABLE = False
@@ -66,7 +66,7 @@ def _build_mcp_app(settings: Settings) -> Any:
     """
     if not _MCP_AGENT_AVAILABLE:
         logger.warning(
-            "mcp-agent not installed — using placeholder. "
+            "mcp-agent not installed - using placeholder. "
             "Install with: pip install mcp-agent"
         )
         return _PlaceholderApp()

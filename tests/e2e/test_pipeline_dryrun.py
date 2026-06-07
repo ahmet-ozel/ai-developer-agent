@@ -1,8 +1,8 @@
-"""E2E test: Pipeline dry-run with real Jira issue.
+﻿"""E2E test: Pipeline dry-run with real Jira issue.
 
 Tests the full pipeline flow in DRY_RUN mode:
 1. Creates a Jira issue assigned to the bot
-2. Runs the pipeline (dry-run — no Git writes)
+2. Runs the pipeline (dry-run - no Git writes)
 3. Verifies pipeline completes without crash
 4. Cleans up the test issue
 
@@ -44,7 +44,7 @@ class TestPipelineDryRun:
 
     @pytest.mark.asyncio
     async def test_pipeline_dryrun_creates_no_pr(self) -> None:
-        """Run pipeline in DRY_RUN mode — should complete without errors."""
+        """Run pipeline in DRY_RUN mode - should complete without errors."""
         jira_url = os.getenv("JIRA_URL", "").rstrip("/")
         username = os.getenv("JIRA_USERNAME", "")
         api_token = os.getenv("JIRA_API_TOKEN", "")
@@ -73,7 +73,7 @@ class TestPipelineDryRun:
                 issue_data = {
                     "fields": {
                         "project": {"key": project_key},
-                        "summary": "[E2E Test] Pipeline dry-run test — auto-delete",
+                        "summary": "[E2E Test] Pipeline dry-run test - auto-delete",
                         "description": {
                             "type": "doc",
                             "version": 1,
@@ -132,7 +132,7 @@ class TestPipelineDryRun:
 
             from src.app import run_pipeline
 
-            # This should NOT raise — dry-run mode skips Git writes
+            # This should NOT raise - dry-run mode skips Git writes
             # Note: mcp-agent may not be fully installed, so the pipeline
             # may fail at the MCP agent level. We catch and check.
             try:

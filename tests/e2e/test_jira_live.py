@@ -1,4 +1,4 @@
-"""E2E tests for Jira Cloud API — real API calls, no mocks.
+﻿"""E2E tests for Jira Cloud API - real API calls, no mocks.
 
 Requires JIRA_URL, JIRA_USERNAME, JIRA_API_TOKEN in .env.
 """
@@ -80,7 +80,7 @@ class TestJiraConnectivity:
 
 @requires_jira
 class TestJiraIssueLifecycle:
-    """Create, read, update, delete a Jira issue — full lifecycle."""
+    """Create, read, update, delete a Jira issue - full lifecycle."""
 
     @pytest.mark.asyncio
     async def test_issue_crud(self) -> None:
@@ -103,7 +103,7 @@ class TestJiraIssueLifecycle:
                 json={
                     "fields": {
                         "project": {"key": project_key},
-                        "summary": "[E2E TEST] Auto-created — safe to delete",
+                        "summary": "[E2E TEST] Auto-created - safe to delete",
                         "issuetype": {"name": "Task"},
                     }
                 },
@@ -132,7 +132,7 @@ class TestJiraIssueLifecycle:
                                 {
                                     "type": "paragraph",
                                     "content": [
-                                        {"type": "text", "text": "E2E test comment — pipeline working"}
+                                        {"type": "text", "text": "E2E test comment - pipeline working"}
                                     ],
                                 }
                             ],

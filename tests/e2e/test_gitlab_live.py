@@ -1,4 +1,4 @@
-"""E2E tests for GitLab API — real API calls, no mocks.
+﻿"""E2E tests for GitLab API - real API calls, no mocks.
 
 Requires GITLAB_TOKEN, GITLAB_GROUP, GITLAB_URL in .env.
 """

@@ -1,9 +1,9 @@
-"""FastAPI webhook server for Jira event handling.
+﻿"""FastAPI webhook server for Jira event handling.
 
 Provides a WebhookServer class that creates an APIRouter with:
-- POST /webhook/jira — signature validation, event parsing, bot assignment check,
+- POST /webhook/jira - signature validation, event parsing, bot assignment check,
   task lock, and async pipeline triggering via BackgroundTask.
-- GET /health — simple health check returning HTTP 200.
+- GET /health - simple health check returning HTTP 200.
 """
 
 from __future__ import annotations
@@ -68,7 +68,7 @@ class WebhookServer:
         request: Request,
         background_tasks: BackgroundTasks,
     ) -> JSONResponse:
-        """POST /webhook/jira — main webhook endpoint.
+        """POST /webhook/jira - main webhook endpoint.
 
         Flow:
         1. Read raw body bytes
@@ -98,7 +98,7 @@ class WebhookServer:
         try:
             payload: dict[str, Any] = json.loads(body)
         except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-            logger.warning("Rejected webhook: malformed JSON payload — %s", exc)
+            logger.warning("Rejected webhook: malformed JSON payload - %s", exc)
             return JSONResponse(
                 status_code=400,
                 content={"detail": "Malformed JSON payload"},
@@ -108,7 +108,7 @@ class WebhookServer:
         try:
             event: WebhookEvent = self._validator.parse_event(payload)
         except (ValueError, KeyError) as exc:
-            logger.warning("Rejected webhook: invalid event payload — %s", exc)
+            logger.warning("Rejected webhook: invalid event payload - %s", exc)
             return JSONResponse(
                 status_code=400,
                 content={"detail": f"Invalid event payload: {exc}"},
@@ -166,5 +166,5 @@ class WebhookServer:
             await self._task_lock.release(issue_key)
 
     async def _health_check(self) -> JSONResponse:
-        """GET /health — returns HTTP 200 with status ok."""
+        """GET /health - returns HTTP 200 with status ok."""
         return JSONResponse(status_code=200, content={"status": "ok"})

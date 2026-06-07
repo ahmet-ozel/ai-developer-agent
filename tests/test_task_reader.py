@@ -1,4 +1,4 @@
-"""Unit tests for TaskReaderAgent.
+﻿"""Unit tests for TaskReaderAgent.
 
 Tests:
 - Valid issue data produces correct TaskContext
@@ -620,7 +620,7 @@ class TestParseHelpers:
 
 
 # ---------------------------------------------------------------------------
-# Tests: Task type filtering — should_skip_task (Requirement 2.10)
+# Tests: Task type filtering - should_skip_task (Requirement 2.10)
 # ---------------------------------------------------------------------------
 
 from src.agents.task_reader import should_skip_task
@@ -756,7 +756,7 @@ def valid_jira_issue_jsons(draw: st.DrawFn) -> tuple[str, dict]:
 
 
 class TestProperty5aTaskContextFieldExtraction:
-    """Property 5a: TaskContext Field Extraction — Valid Repository
+    """Property 5a: TaskContext Field Extraction - Valid Repository
 
     **Validates: Requirements 2.1, 2.2, 2.4, 2.7**
     """
@@ -871,7 +871,7 @@ class TestProperty5aTaskContextFieldExtraction:
 
 
 # ---------------------------------------------------------------------------
-# Property 5b: TaskContext Field Extraction — Missing Repository
+# Property 5b: TaskContext Field Extraction - Missing Repository
 # ---------------------------------------------------------------------------
 
 
@@ -917,7 +917,7 @@ def missing_repository_jira_issue_jsons(draw: st.DrawFn) -> str:
 
 
 class TestProperty5bMissingRepository:
-    """Property 5b: TaskContext Field Extraction — Missing Repository
+    """Property 5b: TaskContext Field Extraction - Missing Repository
 
     **Validates: Requirements 2.3**
     """

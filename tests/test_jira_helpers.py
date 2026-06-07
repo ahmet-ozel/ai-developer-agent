@@ -1,4 +1,4 @@
-"""Unit tests for src/utils/jira_helpers.py.
+﻿"""Unit tests for src/utils/jira_helpers.py.
 
 Covers:
 - format_jira_comment: structured comment formatting with agent_name and stage
@@ -163,7 +163,7 @@ class TestSecretMaskingProperty:
         """After masking, the secret value never appears in the output.
 
         Edge case: if the secret itself is a substring of '***' (e.g. secret='*'),
-        we skip — the replacement marker cannot be secret-free in that case.
+        we skip - the replacement marker cannot be secret-free in that case.
         """
         from hypothesis import assume
         assume("***" not in secret and secret not in "***")

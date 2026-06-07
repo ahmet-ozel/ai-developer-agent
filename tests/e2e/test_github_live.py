@@ -1,4 +1,4 @@
-"""E2E tests for GitHub API — real API calls, no mocks.
+﻿"""E2E tests for GitHub API - real API calls, no mocks.
 
 Requires GITHUB_TOKEN, GITHUB_OWNER in .env.
 """
@@ -50,7 +50,7 @@ class TestGitHubConnectivity:
         assert resp.status_code == 200
         scopes = resp.headers.get("x-oauth-scopes", "")
         # At minimum, repo scope is needed
-        assert "repo" in scopes, f"Token scopes: {scopes} — 'repo' scope required"
+        assert "repo" in scopes, f"Token scopes: {scopes} - 'repo' scope required"
 
 
 @requires_github

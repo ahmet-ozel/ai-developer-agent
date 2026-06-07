@@ -1,4 +1,4 @@
-"""Unit tests for MCPServerConfigBuilder and get_active_git_server_name.
+﻿"""Unit tests for MCPServerConfigBuilder and get_active_git_server_name.
 
 Covers all three git providers (bitbucket, github, gitlab),
 the Atlassian server always being present, and the ConfigurationError
@@ -68,7 +68,7 @@ def _settings(**overrides: object) -> Settings:
 
 
 class TestBuildBitbucket:
-    """Bitbucket uses direct REST API — only atlassian MCP server present."""
+    """Bitbucket uses direct REST API - only atlassian MCP server present."""
 
     def test_contains_only_atlassian_server(self) -> None:
         s = _settings()
@@ -107,7 +107,7 @@ class TestBuildGitHub:
 
 
 class TestBuildGitLab:
-    """GitLab uses direct REST API — only atlassian MCP server present."""
+    """GitLab uses direct REST API - only atlassian MCP server present."""
 
     def test_contains_only_atlassian_server(self) -> None:
         s = Settings(**{**_COMMON, **_GITLAB_CREDS})

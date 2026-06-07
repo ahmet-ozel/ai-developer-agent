@@ -1,9 +1,9 @@
-"""Confluence Publisher — publishes pipeline results to Confluence.
+﻿"""Confluence Publisher - publishes pipeline results to Confluence.
 
 Creates a Confluence page documenting each AI pipeline run, including
 issue summary, changed files, review findings, and PR link.
 Gracefully disabled when Confluence credentials are not configured.
-Never fails the pipeline — all errors are caught and logged.
+Never fails the pipeline - all errors are caught and logged.
 
 Requirements: FR-5, FR-6, FR-7, FR-8, CP-3, CP-4, CP-5
 """
@@ -54,7 +54,7 @@ class ConfluencePublisher:
     """Publishes pipeline results to Confluence via mcp-atlassian.
 
     Disabled silently when confluence_enabled=False or credentials missing.
-    All publish errors are caught — the pipeline is never failed.
+    All publish errors are caught - the pipeline is never failed.
     """
 
     def __init__(self, config: Settings, llm_router: LLMRouter | None = None) -> None:
@@ -82,11 +82,11 @@ class ConfluencePublisher:
         """Create a Confluence page documenting the pipeline run.
 
         Returns the page URL on success, None if disabled or on error.
-        Never raises — all exceptions are caught and logged as warnings.
+        Never raises - all exceptions are caught and logged as warnings.
         """
         if not self._enabled:
             logger.debug(
-                "Confluence publisher disabled — skipping page creation for %s",
+                "Confluence publisher disabled - skipping page creation for %s",
                 task_ctx.issue_key,
             )
             return None
@@ -102,7 +102,7 @@ class ConfluencePublisher:
             return page_url
         except Exception:
             logger.warning(
-                "Failed to publish Confluence page for %s — pipeline continues",
+                "Failed to publish Confluence page for %s - pipeline continues",
                 task_ctx.issue_key,
                 exc_info=True,
             )
@@ -114,7 +114,7 @@ class ConfluencePublisher:
 
     def _build_page_title(self, task_ctx: TaskContext) -> str:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
-        return f"[AI-Agent] {task_ctx.issue_key}: {task_ctx.summary} — {timestamp}"
+        return f"[AI-Agent] {task_ctx.issue_key}: {task_ctx.summary} - {timestamp}"
 
     # ------------------------------------------------------------------
     # Page content builder

@@ -1,4 +1,4 @@
-"""Tests for src/app.py — MCPApp factory and run_pipeline."""
+﻿"""Tests for src/app.py - MCPApp factory and run_pipeline."""
 
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ class TestRunPipeline:
     """run_pipeline should execute inside the MCPApp context manager."""
 
     async def test_run_pipeline_completes_without_error(self) -> None:
-        """Basic smoke test — pipeline runs through orchestrator."""
+        """Basic smoke test - pipeline runs through orchestrator."""
         settings = _make_settings()
         # Pipeline will fail at MCP agent level (placeholder) but should not crash
         try:

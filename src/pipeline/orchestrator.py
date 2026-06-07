@@ -1,4 +1,4 @@
-"""Pipeline Orchestrator — manages the deterministic pipeline flow.
+﻿"""Pipeline Orchestrator - manages the deterministic pipeline flow.
 
 Runs the full pipeline: TaskReader → scope check → task type filter →
 CodeFinder → token budget → review loop → PR creation. Handles Jira
@@ -139,7 +139,7 @@ class PipelineOrchestrator:
                     )
             except Exception:
                 logger.warning(
-                    "Confluence publish failed for %s — pipeline continues",
+                    "Confluence publish failed for %s - pipeline continues",
                     issue_key,
                     exc_info=True,
                 )
@@ -163,7 +163,7 @@ class PipelineOrchestrator:
                     )
                 except Exception:
                     logger.warning(
-                        "Jira transition (in_progress) failed for %s — continuing pipeline",
+                        "Jira transition (in_progress) failed for %s - continuing pipeline",
                         issue_key,
                         exc_info=True,
                     )
@@ -186,7 +186,7 @@ class PipelineOrchestrator:
                     }
                 )
 
-            # e. Scope check — LARGE → halt
+            # e. Scope check - LARGE → halt
             if _task_ctx.estimated_scope == TaskScope.LARGE:
                 msg = (
                     "Task scope estimated as LARGE. "
@@ -315,7 +315,7 @@ class PipelineOrchestrator:
                     )
                 except Exception:
                     logger.warning(
-                        "Jira transition (in_review) failed for %s — continuing pipeline",
+                        "Jira transition (in_review) failed for %s - continuing pipeline",
                         issue_key,
                         exc_info=True,
                     )
@@ -407,7 +407,7 @@ class PipelineOrchestrator:
             )
 
     async def _transition_jira(self, issue_key: str, transition_id: str) -> None:
-        """Transition a Jira issue status. Non-blocking — logs errors but
+        """Transition a Jira issue status. Non-blocking - logs errors but
         does not crash the pipeline.
 
         In dry-run mode, logs the transition instead of executing it.
@@ -435,7 +435,7 @@ class PipelineOrchestrator:
                 )
         except Exception:
             logger.warning(
-                "Jira transition failed for %s (transition_id=%s) — continuing pipeline",
+                "Jira transition failed for %s (transition_id=%s) - continuing pipeline",
                 issue_key,
                 transition_id,
                 exc_info=True,
@@ -485,7 +485,7 @@ class PipelineOrchestrator:
         Runs up to max_retries + 1 iterations. On REQUEST_CHANGES the
         reviewer's feedback is passed back to the writer. On APPROVE or
         REJECT returns immediately. After exhausting retries returns the
-        last (code_change, review) pair — the caller checks the verdict.
+        last (code_change, review) pair - the caller checks the verdict.
         """
         code_writer = CodeWriterAgent(
             settings=self._config, llm_router=self._llm_router
@@ -551,7 +551,7 @@ class PipelineOrchestrator:
             # f. REQUEST_CHANGES → set feedback and continue
             feedback = review.feedback_for_rewrite
 
-        # Exhausted retries — return last pair
+        # Exhausted retries - return last pair
         return code_change, review  # type: ignore[return-value]
 
     async def _create_pull_request(
@@ -629,7 +629,7 @@ class PipelineOrchestrator:
                     self._config.branch_pattern, task_ctx.issue_key, suffix=suffix
                 )
                 logger.warning(
-                    "Branch collision for %s — retrying with suffix %s",
+                    "Branch collision for %s - retrying with suffix %s",
                     task_ctx.issue_key, suffix,
                 )
                 if provider == "gitlab":
@@ -759,7 +759,7 @@ class PipelineOrchestrator:
                     self._config.branch_pattern, task_ctx.issue_key, suffix=suffix
                 )
                 logger.warning(
-                    "Branch collision for %s — retrying with suffix %s",
+                    "Branch collision for %s - retrying with suffix %s",
                     task_ctx.issue_key, suffix,
                 )
                 pr_url = await _attempt_create_pr(branch_name)
@@ -824,7 +824,7 @@ class PipelineOrchestrator:
         """Build the prompt for the PR creator agent.
 
         Includes the FULL file contents so the Git MCP agent can actually
-        commit the generated code — not just file names/sizes.
+        commit the generated code - not just file names/sizes.
         """
         # Build per-file sections with full content
         file_sections: list[str] = []
@@ -870,7 +870,7 @@ class PipelineOrchestrator:
         return match.group(0).rstrip(".,)") if match else None
 
     # ------------------------------------------------------------------
-    # Task 11.4 — Reassignment: read previous AI comments as context
+    # Task 11.4 - Reassignment: read previous AI comments as context
     # ------------------------------------------------------------------
 
     async def _get_previous_review_feedback(self, issue_key: str) -> str | None:

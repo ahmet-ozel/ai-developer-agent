@@ -1,4 +1,4 @@
-"""Unit tests for LLMRouter — provider routing, model overrides, and fallback chain.
+﻿"""Unit tests for LLMRouter - provider routing, model overrides, and fallback chain.
 
 Tests mock the mcp-agent AugmentedLLM imports so the routing logic can be
 verified without a real mcp-agent installation.

@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Run the pipeline for a specific Jira issue — no webhook needed.
+﻿#!/usr/bin/env python3
+"""Run the pipeline for a specific Jira issue - no webhook needed.
 
 Usage:
     python scripts/run_pipeline.py RP-1
@@ -24,7 +24,7 @@ load_dotenv()
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
+    format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
 

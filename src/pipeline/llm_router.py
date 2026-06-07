@@ -1,4 +1,4 @@
-"""LLM Router — provider selection, tier routing, and fallback chain.
+﻿"""LLM Router - provider selection, tier routing, and fallback chain.
 
 Routes LLM requests to the correct mcp-agent AugmentedLLM subclass based on
 the configured tier (fast/strong) and provider (openai, anthropic, google, vllm).
@@ -84,7 +84,7 @@ _PROVIDER_LLM_MAP: dict[str, type] = {
 class LLMRouter:
     """LLM provider selection, tier routing, and fallback chain.
 
-    Returns mcp-agent AugmentedLLM *classes* — it does not make LLM calls
+    Returns mcp-agent AugmentedLLM *classes* - it does not make LLM calls
     itself.  Agents use the returned class with ``agent.attach_llm(cls)``.
     """
 
@@ -138,7 +138,7 @@ class LLMRouter:
             except Exception as exc:
                 error_msg = f"{provider}: {exc}"
                 errors.append(error_msg)
-                logger.warning("LLM fallback — %s failed: %s", provider, exc)
+                logger.warning("LLM fallback - %s failed: %s", provider, exc)
                 continue
 
         raise AllProvidersFailedError(

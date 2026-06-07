@@ -1,4 +1,4 @@
-"""CodeFinder Agent — finds relevant code files and produces CodeContext.
+﻿"""CodeFinder Agent - finds relevant code files and produces CodeContext.
 
 Uses mcp-agent Agent + AugmentedLLM pattern with
 server_names=[get_active_git_server_name(settings)] to interact with the
@@ -209,7 +209,7 @@ class CodeFinderAgent:
         # 2. Detect tech stack from file tree
         tech_stack = detect_tech_stack(file_tree)
 
-        # 3. Use LLM to identify relevant files (no MCP needed — pure LLM call)
+        # 3. Use LLM to identify relevant files (no MCP needed - pure LLM call)
         max_files = self._settings.max_files_per_task
         prompt = FILE_IDENTIFICATION_PROMPT.format(
             summary=task_context.summary,

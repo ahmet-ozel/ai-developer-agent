@@ -1,4 +1,4 @@
-"""FastAPI application entry point.
+﻿"""FastAPI application entry point.
 
 Creates the FastAPI app, loads Settings, wires up the webhook router,
 and optionally starts a Jira polling background task.
@@ -42,7 +42,7 @@ async def _poll_jira(settings: Settings, task_lock: TaskLock) -> None:
     jira_url = settings.jira_url.rstrip("/")
     auth = (settings.jira_username, settings.jira_api_token.get_secret_value())
 
-    logger.info("Polling mode active — checking Jira every %ds for tasks assigned to '%s'", interval, bot)
+    logger.info("Polling mode active - checking Jira every %ds for tasks assigned to '%s'", interval, bot)
 
     while True:
         try:
@@ -65,7 +65,7 @@ async def _poll_jira(settings: Settings, task_lock: TaskLock) -> None:
 
                     # Check if AI bot already completed this task (has completion comment)
                     if _has_completion_comment(issue):
-                        logger.info("Skipping %s — already has AI bot completion comment", key)
+                        logger.info("Skipping %s - already has AI bot completion comment", key)
                         _processed_issues.add(key)
                         continue
 
@@ -74,13 +74,13 @@ async def _poll_jira(settings: Settings, task_lock: TaskLock) -> None:
                         continue
 
                     summary = issue["fields"]["summary"]
-                    logger.info("Poll found new task: %s — %s", key, summary)
+                    logger.info("Poll found new task: %s - %s", key, summary)
                     _processed_issues.add(key)
 
                     # Run pipeline in background so polling continues
                     asyncio.create_task(_run_and_release(key, settings, task_lock))
             else:
-                logger.warning("Jira poll failed: HTTP %s — %s", resp.status_code, resp.text[:200])
+                logger.warning("Jira poll failed: HTTP %s - %s", resp.status_code, resp.text[:200])
 
         except Exception:
             logger.exception("Error during Jira poll cycle")
@@ -126,7 +126,7 @@ async def _run_and_release(issue_key: str, settings: Settings, task_lock: TaskLo
         await task_lock.release(issue_key)
 
 # ---------------------------------------------------------------------------
-# Factory — builds the fully-wired FastAPI application
+# Factory - builds the fully-wired FastAPI application
 # ---------------------------------------------------------------------------
 
 
@@ -188,7 +188,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
 
 # ---------------------------------------------------------------------------
-# Credential validation (non-fatal — logs warnings, never crashes)
+# Credential validation (non-fatal - logs warnings, never crashes)
 # ---------------------------------------------------------------------------
 
 
@@ -196,7 +196,7 @@ async def validate_credentials(settings: Settings) -> list[str]:
     """Check that configured credentials look plausible.
 
     Returns a list of warning messages (empty means all checks passed).
-    This does NOT make network calls — it only validates that the expected
+    This does NOT make network calls - it only validates that the expected
     fields are non-empty for the selected providers.
     """
     warnings: list[str] = []

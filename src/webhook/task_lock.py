@@ -1,4 +1,4 @@
-"""In-memory task-level lock mechanism.
+﻿"""In-memory task-level lock mechanism.
 
 Prevents duplicate pipeline executions for the same Jira issue.
 
@@ -14,7 +14,7 @@ class TaskLock:
     """In-memory task-level lock keyed by issue_key.
 
     Uses a simple dict to track locked issue keys. This is NOT thread-safe
-    across workers — Docker deployment must use --workers 1.
+    across workers - Docker deployment must use --workers 1.
     """
 
     def __init__(self) -> None:

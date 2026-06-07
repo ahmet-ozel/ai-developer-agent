@@ -1,4 +1,4 @@
-"""Unit tests for Settings validation.
+﻿"""Unit tests for Settings validation.
 
 Tests valid configurations for each git provider and verifies that
 missing or mismatched credentials raise ValidationError.
@@ -13,7 +13,7 @@ from src.config.settings import Settings
 
 
 # ---------------------------------------------------------------------------
-# Helpers — minimal required kwargs per provider
+# Helpers - minimal required kwargs per provider
 # ---------------------------------------------------------------------------
 
 _COMMON: dict = {

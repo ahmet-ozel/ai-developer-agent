@@ -1,4 +1,4 @@
-"""Unit tests for src/pipeline/token_budget.py.
+﻿"""Unit tests for src/pipeline/token_budget.py.
 
 Covers:
 - estimate_tokens basic calculation
@@ -73,7 +73,7 @@ class TestEstimateTokens:
 
 
 # =========================================================================
-# trim_code_context — within budget
+# trim_code_context - within budget
 # =========================================================================
 
 
@@ -104,7 +104,7 @@ class TestTrimCodeContextWithinBudget:
 
 
 # =========================================================================
-# trim_code_context — over budget
+# trim_code_context - over budget
 # =========================================================================
 
 
@@ -114,7 +114,7 @@ class TestTrimCodeContextOverBudget:
         t1 = _make_code_file("test_a.py", "y" * 400)  # ~100 tokens
         ctx = _make_context(files=[f1], test_files=[t1])
 
-        # Budget allows only ~20 tokens — test file must go
+        # Budget allows only ~20 tokens - test file must go
         result = trim_code_context(ctx, max_tokens=20)
 
         assert len(result.files) == 1
@@ -127,7 +127,7 @@ class TestTrimCodeContextOverBudget:
         t_large = _make_code_file("test_large.py", "L" * 400)  # ~100 tokens
         ctx = _make_context(files=[f1], test_files=[t_small, t_large])
 
-        # Budget allows ~30 tokens — large test file removed, small kept
+        # Budget allows ~30 tokens - large test file removed, small kept
         result = trim_code_context(ctx, max_tokens=30)
 
         assert len(result.files) == 1
@@ -139,7 +139,7 @@ class TestTrimCodeContextOverBudget:
         f_small = _make_code_file("small.py", "s" * 40)  # ~10 tokens
         ctx = _make_context(files=[f_large, f_small])
 
-        # Budget allows ~20 tokens — large source file removed
+        # Budget allows ~20 tokens - large source file removed
         result = trim_code_context(ctx, max_tokens=20)
 
         assert len(result.files) == 1
@@ -188,7 +188,7 @@ class TestResultSubset:
         ]
         ctx = _make_context(files=files, test_files=test_files)
 
-        # Tight budget — some files will be removed
+        # Tight budget - some files will be removed
         result = trim_code_context(ctx, max_tokens=200)
 
         original_paths = {f.path for f in ctx.files}

@@ -1,4 +1,4 @@
-"""Tests for src/main.py — FastAPI app creation and credential validation."""
+﻿"""Tests for src/main.py - FastAPI app creation and credential validation."""
 
 from __future__ import annotations
 

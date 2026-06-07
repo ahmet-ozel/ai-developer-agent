@@ -1,4 +1,4 @@
-"""CodeReviewer Agent — reviews generated code changes and produces a verdict.
+﻿"""CodeReviewer Agent - reviews generated code changes and produces a verdict.
 
 Uses mcp-agent Agent + AugmentedLLM pattern with server_names=[] (no MCP
 servers needed). Reviews code for security issues, quality, and correctness.
@@ -84,10 +84,10 @@ Review the code for:
 5. Test coverage and quality
 
 Categorize each finding with severity:
-- CRITICAL: Must fix — security vulnerability, logic error, crash
-- WARNING: Should fix — bad practice, edge case not handled
-- SUGGESTION: Nice to have — readability, optimization
-- GOOD: Positive feedback — well-implemented patterns
+- CRITICAL: Must fix - security vulnerability, logic error, crash
+- WARNING: Should fix - bad practice, edge case not handled
+- SUGGESTION: Nice to have - readability, optimization
+- GOOD: Positive feedback - well-implemented patterns
 
 Assign a quality score from 1 to 10.
 

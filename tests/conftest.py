@@ -1,4 +1,4 @@
-"""Shared fixtures, Hypothesis strategies, and MCP mock fixtures for tests.
+﻿"""Shared fixtures, Hypothesis strategies, and MCP mock fixtures for tests.
 
 Provides:
 - Hypothesis strategies for generating valid model instances
@@ -8,7 +8,7 @@ Provides:
 
 from __future__ import annotations
 
-# Exclude e2e tests from default collection — run them separately with:
+# Exclude e2e tests from default collection - run them separately with:
 #   pytest tests/e2e/ -v
 collect_ignore = ["e2e"]
 

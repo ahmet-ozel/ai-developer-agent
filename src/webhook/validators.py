@@ -1,4 +1,4 @@
-"""Webhook payload validation for the AI Developer Agent.
+﻿"""Webhook payload validation for the AI Developer Agent.
 
 Provides HMAC-SHA256 signature verification, event parsing,
 and bot assignment detection for Jira webhook events.
@@ -67,7 +67,7 @@ class WebhookValidator:
 
         fields = issue.get("fields") or {}
 
-        # Extract assignee — Jira sends nested object or None
+        # Extract assignee - Jira sends nested object or None
         assignee_obj = fields.get("assignee")
         assignee: str | None = None
         if isinstance(assignee_obj, dict):

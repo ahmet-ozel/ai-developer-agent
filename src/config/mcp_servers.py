@@ -1,4 +1,4 @@
-"""MCP Server configuration builder.
+﻿"""MCP Server configuration builder.
 
 Generates mcp-agent compatible server configurations based on the
 selected git provider and Jira/Atlassian credentials from Settings.
@@ -38,7 +38,7 @@ class MCPServerConfigBuilder:
         return {"mcpServers": servers}
 
     # ------------------------------------------------------------------
-    # Atlassian (Jira) config — always present
+    # Atlassian (Jira) config - always present
     # ------------------------------------------------------------------
 
     def _atlassian_config(self, settings: Settings) -> dict[str, Any]:
@@ -61,7 +61,7 @@ class MCPServerConfigBuilder:
         return config
 
     # ------------------------------------------------------------------
-    # Git provider config — dispatched by provider type
+    # Git provider config - dispatched by provider type
     # ------------------------------------------------------------------
 
     def _git_config(self, settings: Settings) -> dict[str, Any]:

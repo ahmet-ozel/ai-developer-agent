@@ -1,1 +1,1 @@
-# e2e tests — require real service credentials in .env
+﻿# e2e tests - require real service credentials in .env

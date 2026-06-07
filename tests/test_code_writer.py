@@ -1,4 +1,4 @@
-"""Unit tests for CodeWriterAgent.
+﻿"""Unit tests for CodeWriterAgent.
 
 Tests:
 - Valid LLM response produces correct CodeChange
@@ -589,7 +589,7 @@ class TestProperty12CodeChangeFullFileContent:
         all_changes = list(code_change.changes) + list(code_change.test_changes)
         for change in all_changes:
             if change.new_content is None:
-                # DELETE changes have no content — that's fine
+                # DELETE changes have no content - that's fine
                 assert change.change_type == ChangeType.DELETE, (
                     f"Non-DELETE change {change.path} has None new_content"
                 )
@@ -597,13 +597,13 @@ class TestProperty12CodeChangeFullFileContent:
 
             # Must not start with diff header
             assert not change.new_content.startswith("diff --git"), (
-                f"FileChange {change.path} new_content starts with 'diff --git' — "
+                f"FileChange {change.path} new_content starts with 'diff --git' - "
                 "should be full file content, not a diff"
             )
 
             # Must not contain unified diff hunk headers
             assert not unified_diff_hunk.search(change.new_content), (
-                f"FileChange {change.path} new_content contains unified diff hunk header — "
+                f"FileChange {change.path} new_content contains unified diff hunk header - "
                 "should be full file content, not a diff"
             )
 

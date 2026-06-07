@@ -1,4 +1,4 @@
-"""E2E tests for LLM provider connectivity — real API calls.
+﻿"""E2E tests for LLM provider connectivity - real API calls.
 
 Requires LLM_FAST_PROVIDER, LLM_FAST_MODEL, LLM_FAST_API_KEY in .env.
 """

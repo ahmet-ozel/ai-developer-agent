@@ -1,4 +1,4 @@
-"""E2E test configuration — skips tests if credentials are missing.
+﻿"""E2E test configuration - skips tests if credentials are missing.
 
 Run e2e tests with: pytest tests/e2e/ -v
 Credentials are read from .env file in the project root.
@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 from dotenv import load_dotenv
 
-# Load .env for e2e tests — these need real credentials
+# Load .env for e2e tests - these need real credentials
 _env_path = Path(__file__).resolve().parent.parent.parent / ".env"
 if _env_path.exists():
     load_dotenv(_env_path, override=True)

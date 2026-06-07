@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Jira polling mode — checks for new bot-assigned tasks periodically.
+﻿#!/usr/bin/env python3
+"""Jira polling mode - checks for new bot-assigned tasks periodically.
 
 Usage:
     python scripts/poll_jira.py [--interval 30]
@@ -94,7 +94,7 @@ async def poll_loop(interval: int) -> None:
                 if key in _processed:
                     continue
 
-                logger.info("Found new task: %s — %s [%s]", key, summary, status)
+                logger.info("Found new task: %s - %s [%s]", key, summary, status)
                 _processed.add(key)
                 await trigger_pipeline(key)
 

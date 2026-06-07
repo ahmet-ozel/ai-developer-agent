@@ -1,4 +1,4 @@
-"""Direct GitLab REST API client — bypasses MCP server entirely.
+﻿"""Direct GitLab REST API client - bypasses MCP server entirely.
 
 Provides all Git operations needed by the pipeline:
 - Repository file tree listing

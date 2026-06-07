@@ -1,4 +1,4 @@
-"""Unit tests for PipelineOrchestrator — basic flow and Jira communication.
+﻿"""Unit tests for PipelineOrchestrator - basic flow and Jira communication.
 
 Covers:
 - Basic pipeline flow (happy path with mocked agents)
@@ -143,7 +143,7 @@ def _make_review_reject() -> ReviewResult:
 
 
 class TestPipelineOrchestratorHappyPath:
-    """Basic pipeline flow — happy path with mocked agents."""
+    """Basic pipeline flow - happy path with mocked agents."""
 
     @pytest.mark.asyncio
     async def test_happy_path_returns_success(self) -> None:
@@ -652,7 +652,7 @@ class TestReviewLoop:
             )
 
         assert result_review.verdict == ReviewVerdict.REJECT
-        # Only one iteration — no retry on REJECT
+        # Only one iteration - no retry on REJECT
         MockWriter.return_value.write_code.assert_called_once()
         MockReviewer.return_value.review_code.assert_called_once()
 
@@ -2284,9 +2284,9 @@ class TestJiraTransitionNonBlockingProperties:
 
                 try:
                     await orchestrator._transition_jira(issue_key, transition_id)
-                    return True  # No exception raised — correct behavior
+                    return True  # No exception raised - correct behavior
                 except Exception:
-                    return False  # Exception propagated — incorrect behavior
+                    return False  # Exception propagated - incorrect behavior
 
         no_exception_raised = asyncio.run(_run())
 
@@ -2573,7 +2573,7 @@ class TestReassignmentDetectionProperties:
         orchestrator = self._make_orchestrator()
 
         async def _run() -> Any:
-            """Call _get_previous_review_feedback with a failing Agent — should return None."""
+            """Call _get_previous_review_feedback with a failing Agent - should return None."""
             mock_agent_instance = MagicMock()
             mock_agent_instance.__aenter__ = AsyncMock(
                 side_effect=RuntimeError("Jira unavailable")

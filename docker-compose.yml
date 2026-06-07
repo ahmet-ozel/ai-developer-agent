@@ -1,4 +1,4 @@
-services:
+﻿services:
   agent:
     build: .
     container_name: ai-developer-agent
@@ -6,7 +6,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      # Mount source for development (optional — remove for production)
+      # Mount source for development (optional - remove for production)
       - ./src:/app/src:ro
       - ./mcp_agent.config.yaml:/app/mcp_agent.config.yaml:ro
     restart: unless-stopped

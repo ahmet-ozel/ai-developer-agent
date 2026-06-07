@@ -1,4 +1,4 @@
-"""TaskReader Agent — reads Jira issue details and produces TaskContext.
+﻿"""TaskReader Agent - reads Jira issue details and produces TaskContext.
 
 Uses mcp-agent Agent + AugmentedLLM pattern with server_names=["atlassian"]
 to interact with Jira MCP server. Estimates task scope via fast tier LLM.
@@ -51,7 +51,7 @@ except ImportError:  # pragma: no cover
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Dynamic Jira field discovery — finds the "repository" custom field ID
+# Dynamic Jira field discovery - finds the "repository" custom field ID
 # at runtime by querying /rest/api/3/field. Result is cached per Jira URL.
 # ---------------------------------------------------------------------------
 
@@ -506,7 +506,7 @@ def should_skip_task(task_ctx: TaskContext, settings: Settings) -> tuple[bool, s
     - Otherwise → don't skip.
 
     Returns:
-        (should_skip, reason) — reason is empty string when not skipping.
+        (should_skip, reason) - reason is empty string when not skipping.
     """
     issue_type = task_ctx.issue_type
     if issue_type is None:

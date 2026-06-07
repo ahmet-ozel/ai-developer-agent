@@ -1,4 +1,4 @@
-"""CodeWriter Agent — generates code changes from task and code context.
+﻿"""CodeWriter Agent - generates code changes from task and code context.
 
 Uses mcp-agent Agent + AugmentedLLM pattern with server_names=[] (no MCP
 servers needed). Produces full file content (not diffs), test files,
@@ -63,7 +63,7 @@ CODE_WRITER_INSTRUCTION = """You are a code writer agent. Your job is to generat
 based on a Jira task description and existing code context.
 
 Rules:
-1. Produce COMPLETE file content for each changed file — never output diffs.
+1. Produce COMPLETE file content for each changed file - never output diffs.
 2. Generate or update test files covering your changes (happy path + error cases).
 3. Use Conventional Commits format for the commit message (e.g. "feat(auth): add token refresh").
 4. Generate a clear PR title and description.

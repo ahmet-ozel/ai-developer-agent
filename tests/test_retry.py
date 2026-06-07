@@ -1,4 +1,4 @@
-"""Unit tests for src/pipeline/retry.py — shared retry mechanism.
+﻿"""Unit tests for src/pipeline/retry.py - shared retry mechanism.
 
 Covers:
 - Retryable exception → retries up to max_retries
@@ -288,7 +288,7 @@ class TestRetryProperties:
         asyncio.run(_run())
 
     # ------------------------------------------------------------------
-    # Property 4: _is_retryable is consistent — same exception always
+    # Property 4: _is_retryable is consistent - same exception always
     #             gives same result
     # **Validates: Requirements 2.5, 3.5, 11.1**
     # ------------------------------------------------------------------

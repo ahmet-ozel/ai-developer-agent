@@ -1,4 +1,4 @@
-"""HTTP integration tests for the Webhook Server.
+﻿"""HTTP integration tests for the Webhook Server.
 
 Tests the full FastAPI request/response cycle including signature validation,
 event routing, bot assignment checks, task locking, and health endpoint.
@@ -22,7 +22,7 @@ from src.webhook.server import WebhookServer
 from src.webhook.task_lock import TaskLock
 
 # ---------------------------------------------------------------------------
-# Helpers — reuse the Settings construction pattern from test_settings.py
+# Helpers - reuse the Settings construction pattern from test_settings.py
 # ---------------------------------------------------------------------------
 
 _COMMON: dict = {
@@ -111,7 +111,7 @@ async def client(app_and_settings: tuple[FastAPI, Settings, TaskLock]) -> AsyncC
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira — valid signature + bot assignee → 200 pipeline enqueued
+# POST /webhook/jira - valid signature + bot assignee → 200 pipeline enqueued
 # ---------------------------------------------------------------------------
 
 
@@ -138,7 +138,7 @@ class TestWebhookPipelineEnqueued:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira — invalid signature → 401
+# POST /webhook/jira - invalid signature → 401
 # ---------------------------------------------------------------------------
 
 
@@ -160,7 +160,7 @@ class TestWebhookInvalidSignature:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira — malformed JSON → 400
+# POST /webhook/jira - malformed JSON → 400
 # ---------------------------------------------------------------------------
 
 
@@ -182,7 +182,7 @@ class TestWebhookMalformedPayload:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira — non-bot assignee → 200 ignored
+# POST /webhook/jira - non-bot assignee → 200 ignored
 # ---------------------------------------------------------------------------
 
 
@@ -208,7 +208,7 @@ class TestWebhookNonBotAssignee:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira — duplicate task (lock held) → 200 ignored
+# POST /webhook/jira - duplicate task (lock held) → 200 ignored
 # ---------------------------------------------------------------------------
 
 
@@ -242,7 +242,7 @@ class TestWebhookDuplicateTask:
 
 
 # ---------------------------------------------------------------------------
-# POST /webhook/jira — wrong event type → 200 ignored
+# POST /webhook/jira - wrong event type → 200 ignored
 # ---------------------------------------------------------------------------
 
 
